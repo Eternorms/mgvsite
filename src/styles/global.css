@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-navy antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Button variants */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 font-accent font-semibold text-sm uppercase tracking-wider rounded-lg transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply btn bg-gold text-navy hover:bg-gold-dark shadow-button hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply btn bg-navy text-white hover:bg-navy-light;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-gold text-gold hover:bg-gold hover:text-navy;
+  }
+
+  .btn-white {
+    @apply btn bg-white text-navy hover:bg-gray-light;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-card overflow-hidden transition-all duration-300 hover:shadow-card-hover;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 text-caption font-accent font-semibold uppercase tracking-wider rounded-full;
+  }
+
+  .badge-gold {
+    @apply badge bg-gold/10 text-gold;
+  }
+
+  .badge-navy {
+    @apply badge bg-navy text-white;
+  }
+
+  /* Section padding */
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Decorative gold line */
+  .decor-line {
+    @apply w-16 h-0.5 bg-gold;
+  }
+
+  /* Glass effect for header */
+  .glass {
+    @apply bg-white/90 backdrop-blur-md;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold to-gold-light;
+  }
+
+  /* Aspect ratios for property images */
+  .aspect-property {
+    aspect-ratio: 4/3;
+  }
+
+  .aspect-property-wide {
+    aspect-ratio: 16/9;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

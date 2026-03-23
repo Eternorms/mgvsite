@@ -1,0 +1,50 @@
+---
+import RegionCard from '../cards/RegionCard.astro';
+
+const regions = [
+  {
+    name: 'Caiobá',
+    propertyCount: 45,
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=750&fit=crop',
+    href: '/imoveis?regiao=caioba',
+  },
+  {
+    name: 'Matinhos',
+    propertyCount: 32,
+    image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=750&fit=crop',
+    href: '/imoveis?regiao=matinhos',
+  },
+  {
+    name: 'Guaratuba',
+    propertyCount: 28,
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=750&fit=crop',
+    href: '/imoveis?regiao=guaratuba',
+  },
+  {
+    name: 'Pontal do Paraná',
+    propertyCount: 21,
+    image: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=600&h=750&fit=crop',
+    href: '/imoveis?regiao=pontal-parana',
+  },
+];
+---
+
+<section class="section bg-gray-light">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="text-center mb-12 lg:mb-16">
+      <div class="decor-line mx-auto mb-6"></div>
+      <h2 class="font-heading text-h2 text-navy mb-4">Explore por região</h2>
+      <p class="text-gray max-w-2xl mx-auto">
+        Descubra as melhores oportunidades nas praias mais exclusivas do litoral paranaense
+      </p>
+    </div>
+
+    <!-- Regions Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      {regions.map((region) => (
+        <RegionCard {...region} />
+      ))}
+    </div>
+  </div>
+</section>

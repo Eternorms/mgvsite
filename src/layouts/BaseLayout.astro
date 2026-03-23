@@ -1,0 +1,25 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'MGV Imóveis - Encontre seu imóvel de luxo no litoral do Paraná' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | MGV Imóveis</title>
+  </head>
+  <body class="min-h-screen bg-off-white">
+    <slot />
+  </body>
+</html>

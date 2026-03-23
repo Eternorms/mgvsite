@@ -1,0 +1,30 @@
+{
+  "pencil": {
+    "sourceFile": ".pencil/pencil-new.pen",
+    "cacheDir": ".pencil/.cache"
+  },
+  "astro": {
+    "outputDir": "src/generated",
+    "componentPrefix": "Generated"
+  },
+  "tailwind": {
+    "configPath": "tailwind.config.mjs",
+    "syncVariables": true
+  },
+  "git": {
+    "autoCommit": true,
+    "autoPush": false,
+    "branch": "main",
+    "remote": "origin",
+    "commitPrefix": "🤖 Auto-sync from Pencil"
+  },
+  "watch": {
+    "enabled": true,
+    "debounce": 500,
+    "paths": [".pencil/*.pen"]
+  },
+  "notifications": {
+    "console": true,
+    "desktop": false
+  }
+}

@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import ExploreRegions from '../components/sections/ExploreRegions.astro';
+import PropertyCard from '../components/cards/PropertyCard.astro';
+import Button from '../components/ui/Button.astro';
+
+// Mock data for featured properties
+const featuredProperties = [
+  {
+    title: 'Apartamento Frente Mar em Caiobá',
+    location: 'Caiobá, Matinhos',
+    price: 'R$ 1.250.000',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop',
+    href: '/imoveis/apartamento-frente-mar-caioba',
+    beds: 3,
+    baths: 2,
+    area: 120,
+    isNew: true,
+    isExclusive: true,
+  },
+  {
+    title: 'Casa de Alto Padrão com Piscina',
+    location: 'Guaratuba',
+    price: 'R$ 2.800.000',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop',
+    href: '/imoveis/casa-alto-padrao-guaratuba',
+    beds: 4,
+    baths: 3,
+    area: 280,
+    has3DTour: true,
+  },
+  {
+    title: 'Cobertura Duplex Vista Mar',
+    location: 'Matinhos Centro',
+    price: 'R$ 1.950.000',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop',
+    href: '/imoveis/cobertura-duplex-matinhos',
+    beds: 3,
+    baths: 3,
+    area: 180,
+    isExclusive: true,
+  },
+];
+---
+
+<BaseLayout title="Imóveis de Luxo no Litoral do Paraná">
+  <Header variant="transparent" />
+
+  <!-- Hero Section -->
+  <Hero
+    title="Encontre seu refúgio no litoral paranaense"
+    subtitle="Imóveis exclusivos nas melhores praias do Paraná. Seu sonho de morar no litoral começa aqui."
+    backgroundImage="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1920&h=1080&fit=crop"
+    height="full"
+    ctaText="Ver imóveis"
+    ctaHref="/imoveis"
+  />
+
+  <!-- Explore Regions -->
+  <ExploreRegions />
+
+  <!-- Featured Properties Section -->
+  <section class="section">
+    <div class="container-custom">
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
+        <div>
+          <div class="decor-line mb-6"></div>
+          <h2 class="font-heading text-h2 text-navy mb-4">Imóveis em destaque</h2>
+          <p class="text-gray max-w-xl">
+            Seleção especial dos nossos melhores imóveis disponíveis
+          </p>
+        </div>
+        <Button href="/imoveis" variant="outline" class="mt-6 lg:mt-0">
+          Ver todos os imóveis
+        </Button>
+      </div>
+
+      <!-- Properties Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {featuredProperties.map((property) => (
+          <PropertyCard {...property} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&h=800&fit=crop"
+        alt=""
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-navy/85"></div>
+    </div>
+
+    <div class="relative container-custom text-center">
+      <div class="decor-line mx-auto mb-6"></div>
+      <h2 class="font-heading text-h2 lg:text-h1 text-white mb-6">
+        Pronto para encontrar seu imóvel ideal?
+      </h2>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto mb-10">
+        Nossa equipe especializada está pronta para ajudá-lo a encontrar
+        o imóvel perfeito para você e sua família no litoral do Paraná.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/contato" variant="primary" size="lg">
+          Agende uma visita
+        </Button>
+        <Button href="tel:+5541999999999" variant="outline" size="lg">
+          (41) 99999-9999
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

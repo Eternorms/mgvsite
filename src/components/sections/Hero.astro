@@ -1,0 +1,68 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  backgroundImage: string;
+  height?: 'full' | 'large' | 'medium' | 'small';
+  showDecoLine?: boolean;
+  ctaText?: string;
+  ctaHref?: string;
+  align?: 'left' | 'center';
+}
+
+const {
+  title,
+  subtitle,
+  backgroundImage,
+  height = 'full',
+  showDecoLine = true,
+  ctaText,
+  ctaHref,
+  align = 'left',
+} = Astro.props;
+
+const heights = {
+  full: 'h-screen',
+  large: 'h-[800px]',
+  medium: 'h-[500px]',
+  small: 'h-[400px]',
+};
+---
+
+<section class={`relative ${heights[height]} overflow-hidden`}>
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src={backgroundImage}
+      alt=""
+      class="w-full h-full object-cover"
+    />
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent"></div>
+  </div>
+
+  <!-- Content -->
+  <div class={`relative h-full flex items-end pb-20 lg:pb-32 container-custom ${align === 'center' ? 'justify-center text-center' : ''}`}>
+    <div class={`max-w-2xl ${align === 'center' ? 'mx-auto' : ''}`}>
+      {showDecoLine && (
+        <div class={`decor-line mb-6 ${align === 'center' ? 'mx-auto' : ''}`}></div>
+      )}
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-display text-white mb-4">
+        {title}
+      </h1>
+      {subtitle && (
+        <p class="text-white/80 text-lg md:text-xl mb-8">
+          {subtitle}
+        </p>
+      )}
+      {ctaText && ctaHref && (
+        <Button variant="primary" href={ctaHref} size="lg">
+          {ctaText}
+        </Button>
+      )}
+      <slot />
+    </div>
+  </div>
+</section>
