@@ -46,6 +46,14 @@ export default {
         'caption': ['10px', { lineHeight: '1.4' }],
       },
       spacing: {
+        // Design system spacing scale
+        'xs': '4px',    // 4px
+        'sm': '8px',    // 8px
+        'md': '16px',   // 16px
+        'lg': '24px',   // 24px
+        'xl': '40px',   // 40px
+        '2xl': '64px',  // 64px
+        // Custom spacing
         '18': '72px',
         '22': '88px',
         '30': '120px',
