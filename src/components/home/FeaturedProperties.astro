@@ -1,0 +1,41 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import PropertyCard from '../ui/PropertyCard.astro';
+import { getFeaturedProperties } from '../../data/properties';
+
+const featured = getFeaturedProperties();
+---
+
+<section class="py-[80px] px-12" style="background: #FAFAFA;">
+  <div class="max-w-[1200px] mx-auto">
+    <SectionHeader
+      eyebrow="Portfólio selecionado"
+      title="Imóveis em Destaque"
+      linkLabel="Ver todos os imóveis"
+      linkHref="/imoveis"
+    />
+
+    <div class="grid grid-cols-3 gap-6">
+      {featured.map((property) => (
+        <PropertyCard property={property} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px) {
+    section {
+      padding: 56px 20px;
+    }
+    .grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px;
+    }
+  }
+  @media (min-width: 901px) and (max-width: 1100px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+</style>

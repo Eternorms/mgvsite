@@ -1,46 +1,39 @@
 ---
+/**
+ * Button Component - MGV Imóveis
+ * Baseado no MGV BrandGuide
+ */
+
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline' | 'white';
+  variant?: 'primary' | 'navy' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
+  type?: 'button' | 'submit' | 'reset';
   class?: string;
-  type?: 'button' | 'submit';
-  fullWidth?: boolean;
 }
 
 const {
   variant = 'primary',
   size = 'md',
   href,
-  class: className = '',
   type = 'button',
-  fullWidth = false,
+  class: className = ''
 } = Astro.props;
 
-const baseStyles = 'inline-flex items-center justify-center font-accent font-semibold uppercase tracking-wider rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2';
+const variantClass = {
+  primary: 'btn-primary',
+  navy: 'btn-navy',
+  outline: 'btn-outline',
+  ghost: 'btn-ghost',
+}[variant];
 
-const variants = {
-  primary: 'bg-gold text-navy hover:bg-gold-dark shadow-button hover:shadow-lg focus:ring-gold',
-  secondary: 'bg-navy text-white hover:bg-navy-light focus:ring-navy',
-  outline: 'border-2 border-gold text-gold hover:bg-gold hover:text-navy focus:ring-gold',
-  white: 'bg-white text-navy hover:bg-gray-light focus:ring-white',
-};
+const sizeClass = {
+  sm: 'btn-sm',
+  md: '',
+  lg: 'btn-lg',
+}[size];
 
-const sizes = {
-  sm: 'px-4 py-2 text-xs',
-  md: 'px-6 py-3 text-sm',
-  lg: 'px-8 py-4 text-base',
-};
-
-const classes = [
-  baseStyles,
-  variants[variant],
-  sizes[size],
-  fullWidth ? 'w-full' : '',
-  className,
-].filter(Boolean).join(' ');
-
-const Element = href ? 'a' : 'button';
+const classes = `btn ${variantClass} ${sizeClass} ${className}`.trim();
 ---
 
 {href ? (

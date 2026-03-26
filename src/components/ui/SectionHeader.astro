@@ -1,0 +1,32 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  linkLabel?: string;
+  linkHref?: string;
+  class?: string;
+}
+
+const { eyebrow, title, linkLabel, linkHref, class: className = '' } = Astro.props;
+---
+
+<div class={`flex items-end justify-between mb-[40px] ${className}`}>
+  <div>
+    <div class="flex items-center gap-[10px] text-[9.5px] font-bold tracking-[0.24em] uppercase text-gold mb-[8px] before:content-[''] before:w-[24px] before:h-px before:bg-gold before:opacity-60">
+      {eyebrow}
+    </div>
+    <h2 class="text-[clamp(22px,2.8vw,30px)] font-extrabold text-navy tracking-tight">{title}</h2>
+  </div>
+
+  {linkLabel && linkHref && (
+    <a
+      href={linkHref}
+      class="flex items-center gap-[6px] text-[11.5px] font-bold tracking-[0.07em] text-gold no-underline border-b border-gold/30 pb-[2px] whitespace-nowrap transition-all duration-200 hover:gap-[10px] hover:border-gold"
+    >
+      {linkLabel}
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  )}
+</div>

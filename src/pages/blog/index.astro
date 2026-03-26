@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+
+const posts = [
+  {
+    slug: 'mercado-imoveis-guaruja-2024',
+    title: 'Mercado imobiliário de Guarujá: perspectivas para 2024',
+    excerpt: 'O litoral paulista continua aquecido. Analisamos os bairros com maior valorização e as melhores oportunidades de investimento para este ano.',
+    date: '15 Mar 2024',
+    category: 'Mercado',
+    readTime: '5 min',
+    gradient: 'linear-gradient(145deg, #0d2848, #081c34)',
+  },
+  {
+    slug: 'dicas-comprar-imovel-litoral',
+    title: '7 dicas essenciais para comprar um imóvel no litoral',
+    excerpt: 'Desde a escolha da localização até a verificação da documentação, reunimos os pontos mais importantes para uma compra segura e tranquila.',
+    date: '02 Mar 2024',
+    category: 'Guias',
+    readTime: '8 min',
+    gradient: 'linear-gradient(155deg, #182808, #0e1e05)',
+  },
+  {
+    slug: 'riviera-sao-lourenco-investimento',
+    title: 'Por que a Riviera de São Lourenço é um dos melhores destinos de investimento',
+    excerpt: 'Infraestrutura de alto padrão, crescimento constante e qualidade de vida incomparável. Entenda o que torna a Riviera tão especial.',
+    date: '20 Fev 2024',
+    category: 'Investimento',
+    readTime: '6 min',
+    gradient: 'linear-gradient(150deg, #08162a, #050e1c)',
+  },
+  {
+    slug: 'documentacao-compra-imovel',
+    title: 'Documentação necessária para comprar um imóvel: guia completo',
+    excerpt: 'Entenda todos os documentos necessários para comprador e vendedor, além das certidões essenciais para uma transação segura.',
+    date: '10 Fev 2024',
+    category: 'Guias',
+    readTime: '10 min',
+    gradient: 'linear-gradient(145deg, #28190a, #180f05)',
+  },
+  {
+    slug: 'imovel-temporada-guaruja',
+    title: 'Imóvel para temporada em Guarujá: vale a pena?',
+    excerpt: 'Calculamos a rentabilidade real de um imóvel de temporada em Guarujá e analisamos os prós e contras desta modalidade de investimento.',
+    date: '28 Jan 2024',
+    category: 'Investimento',
+    readTime: '7 min',
+    gradient: 'linear-gradient(155deg, #0e2238, #122848)',
+  },
+  {
+    slug: 'valorizacao-imoveis-praia',
+    title: 'Imóveis de praia: como avaliar a valorização ao longo do tempo',
+    excerpt: 'Fatores como infraestrutura, acesso, qualidade construtiva e localização dentro do bairro influenciam diretamente no potencial de valorização.',
+    date: '15 Jan 2024',
+    category: 'Mercado',
+    readTime: '6 min',
+    gradient: 'linear-gradient(145deg, #182808, #0d2848)',
+  },
+];
+
+const categories = ['Todos', 'Mercado', 'Guias', 'Investimento'];
+---
+
+<BaseLayout
+  title="Blog — Conteúdo sobre o mercado imobiliário"
+  description="Artigos, guias e análises sobre o mercado imobiliário do litoral paulista. Guarujá, Riviera de São Lourenço e Santos."
+>
+  <Header alwaysSolid />
+
+  <!-- Header -->
+  <div class="pt-[120px] pb-[56px] px-12" style="background: #0B1D33;">
+    <div class="max-w-[900px] mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[0.28em] text-gold uppercase mb-6 before:content-[''] before:w-8 before:h-px before:bg-gold before:opacity-50 after:content-[''] after:w-8 after:h-px after:bg-gold after:opacity-50">
+        Blog & Conteúdo
+      </div>
+      <h1 class="text-[clamp(28px,4vw,44px)] font-extrabold text-white tracking-tight mb-4" style="font-family: 'Playfair Display', serif;">
+        Insights do mercado imobiliário
+      </h1>
+      <p class="text-[14px] text-white/50 max-w-md mx-auto leading-relaxed">
+        Artigos, guias e análises para ajudá-lo a tomar as melhores decisões no mercado imobiliário do litoral paulista.
+      </p>
+    </div>
+  </div>
+
+  <!-- Category filter tabs -->
+  <div class="bg-white border-b border-navy/8 px-12 py-4">
+    <div class="max-w-[1000px] mx-auto flex items-center gap-2">
+      {categories.map((cat, i) => (
+        <button
+          class={`blog-cat text-[11.5px] font-semibold px-4 py-[8px] rounded-full border transition-all duration-200 cursor-pointer ${i === 0 ? 'bg-navy text-white border-navy' : 'bg-transparent text-navy/55 border-navy/12 hover:border-navy/30 hover:text-navy'}`}
+          data-category={cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Posts grid -->
+  <div class="py-[56px] px-12" style="background: #FAFAFA;">
+    <div class="max-w-[1000px] mx-auto">
+      <div id="posts-grid" class="grid grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <article
+            class="bg-white rounded-[14px] overflow-hidden border border-navy/7 shadow-card cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            data-category={post.category}
+          >
+            <!-- Image placeholder -->
+            <div class="h-[160px] relative overflow-hidden">
+              <div class="absolute inset-0 transition-transform duration-500 hover:scale-105" style={`background: ${post.gradient};`}></div>
+              <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 40%, rgba(8,22,40,.6) 100%);"></div>
+              <div class="absolute top-3 left-3 text-[9px] font-bold tracking-[0.12em] uppercase px-[10px] py-1 rounded-[4px] bg-gold text-navy">
+                {post.category}
+              </div>
+            </div>
+
+            <div class="p-5">
+              <div class="flex items-center gap-3 text-[10px] text-navy/35 mb-3">
+                <span>{post.date}</span>
+                <span>·</span>
+                <span>{post.readTime} leitura</span>
+              </div>
+              <h2 class="text-[14px] font-bold text-navy leading-snug mb-3 line-clamp-2">{post.title}</h2>
+              <p class="text-[12px] text-navy/55 leading-[1.65] line-clamp-3 mb-4">{post.excerpt}</p>
+              <a
+                href={`/blog/${post.slug}`}
+                class="flex items-center gap-1.5 text-[11px] font-bold text-gold no-underline transition-colors hover:text-gold-dark"
+              >
+                Ler artigo
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter CTA -->
+  <div class="py-[64px] px-12 bg-white text-center">
+    <div class="max-w-[520px] mx-auto">
+      <h2 class="text-[22px] font-extrabold text-navy tracking-tight mb-3">Receba novidades em primeira mão</h2>
+      <p class="text-[13px] text-navy/50 mb-6">Novos imóveis, análises de mercado e dicas exclusivas direto no seu e-mail.</p>
+      <form class="flex gap-2 max-w-[400px] mx-auto">
+        <input
+          type="email"
+          placeholder="seu@email.com.br"
+          class="flex-1 text-[13px] text-navy bg-gray-50 border border-navy/10 rounded-[9px] px-4 py-[11px] outline-none transition-colors focus:border-gold placeholder-navy/30"
+        />
+        <button
+          type="submit"
+          class="px-6 py-[11px] bg-gold text-navy font-bold text-[12px] tracking-[0.06em] rounded-[9px] border-none cursor-pointer whitespace-nowrap transition-colors hover:bg-gold-dark"
+          style="color: #0B1D33;"
+        >
+          Assinar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const catBtns = document.querySelectorAll('.blog-cat');
+  const articles = document.querySelectorAll('#posts-grid article');
+
+  catBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach((b) => {
+        b.classList.remove('bg-navy', 'text-white', 'border-navy');
+        b.classList.add('bg-transparent', 'text-navy/55', 'border-navy/12');
+      });
+      btn.classList.add('bg-navy', 'text-white', 'border-navy');
+      btn.classList.remove('bg-transparent', 'text-navy/55', 'border-navy/12');
+
+      const selected = btn.getAttribute('data-category');
+      articles.forEach((article) => {
+        const el = article as HTMLElement;
+        el.style.display = (selected === 'Todos' || el.getAttribute('data-category') === selected) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+<style>
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  @media (max-width: 900px) {
+    #posts-grid { grid-template-columns: 1fr !important; gap: 16px; }
+    .px-12 { padding-left: 20px !important; padding-right: 20px !important; }
+  }
+  @media (min-width: 901px) and (max-width: 1100px) {
+    #posts-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+</style>

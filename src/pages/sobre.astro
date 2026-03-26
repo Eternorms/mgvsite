@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { siteConfig } from '../data/siteConfig';
+
+const team = [
+  {
+    name: 'Marcos Vinícius Guimarães',
+    role: 'Sócio-Fundador & Consultor Sênior',
+    bio: 'Mais de 12 anos no mercado imobiliário do litoral paulista. Especialista em imóveis de alto padrão em Guarujá e Riviera de São Lourenço.',
+    imoveis: '340+',
+    anos: '12',
+    initial: 'M',
+  },
+  {
+    name: 'Gabriela Vieira',
+    role: 'Consultora de Vendas',
+    bio: 'Especializada em atendimento consultivo e acompanhamento personalizado em todas as etapas da compra ou venda do seu imóvel.',
+    imoveis: '85+',
+    anos: '5',
+    initial: 'G',
+  },
+  {
+    name: 'Rafael Andrade',
+    role: 'Consultor de Locação',
+    bio: 'Foco em locação de temporada e residencial. Amplo conhecimento da região de Santos e do Guarujá continental.',
+    imoveis: '120+',
+    anos: '7',
+    initial: 'R',
+  },
+];
+---
+
+<BaseLayout
+  title="Sobre a MGV Imóveis"
+  description="Conheça a história, valores e equipe da MGV Imóveis — especialistas em imóveis de alto padrão no litoral paulista."
+>
+  <Header alwaysSolid />
+
+  <!-- Hero -->
+  <div class="pt-[120px] pb-[72px] px-12 relative overflow-hidden" style="background: #0B1D33;">
+    <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(rgba(201,168,76,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,.025) 1px, transparent 1px); background-size: 72px 72px;"></div>
+    <div class="relative max-w-[800px] mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 text-[10px] font-bold tracking-[0.28em] text-gold uppercase mb-6 before:content-[''] before:w-8 before:h-px before:bg-gold before:opacity-50 after:content-[''] after:w-8 after:h-px after:bg-gold after:opacity-50">
+        Nossa história
+      </div>
+      <h1 class="text-[clamp(32px,5vw,52px)] font-extrabold text-white tracking-tight leading-tight mb-6" style="font-family: 'Playfair Display', serif;">
+        Valor que <em style="font-style: italic; color: #C9A84C;">Permanece</em>
+      </h1>
+      <p class="text-[15px] text-white/55 leading-[1.8] max-w-[560px] mx-auto">
+        Desde 2012, a MGV Imóveis conecta famílias aos melhores imóveis do litoral paulista com atendimento consultivo, ético e personalizado.
+      </p>
+    </div>
+  </div>
+
+  <!-- Story section -->
+  <div class="py-[72px] px-12 bg-white">
+    <div class="max-w-[1000px] mx-auto grid gap-16" style="grid-template-columns: 1fr 1fr;">
+
+      <div>
+        <div class="text-[9.5px] font-bold tracking-[0.24em] uppercase text-gold mb-3 flex items-center gap-2 before:content-[''] before:w-6 before:h-px before:bg-gold before:opacity-60">Quem somos</div>
+        <h2 class="text-[26px] font-extrabold text-navy tracking-tight mb-5 leading-tight">Especialistas no mercado litorâneo</h2>
+        <p class="text-[14px] text-navy/65 leading-[1.8] mb-4">
+          A MGV Imóveis nasceu do amor pelo litoral paulista e da vontade de transformar a experiência de comprar ou vender um imóvel. Acreditamos que cada negociação é única e merece atenção, cuidado e transparência.
+        </p>
+        <p class="text-[14px] text-navy/65 leading-[1.8]">
+          Atuamos com imóveis de médio e alto padrão em Guarujá, Riviera de São Lourenço e Santos, oferecendo um portfólio criteriosamente selecionado e um atendimento que vai muito além de uma simples transação.
+        </p>
+      </div>
+
+      <div>
+        <div class="text-[9.5px] font-bold tracking-[0.24em] uppercase text-gold mb-3 flex items-center gap-2 before:content-[''] before:w-6 before:h-px before:bg-gold before:opacity-60">Nossos números</div>
+        <h2 class="text-[26px] font-extrabold text-navy tracking-tight mb-5 leading-tight">Uma história de confiança</h2>
+
+        <div class="grid grid-cols-2 gap-4">
+          {siteConfig.stats.map((stat) => (
+            <div class="p-5 rounded-[12px] border border-navy/7 bg-off-white">
+              <div class="text-[32px] font-extrabold text-navy leading-none tracking-tight mb-1">{stat.value}</div>
+              <div class="text-[11px] text-navy/45 uppercase tracking-wider">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <div class="py-[72px] px-12" style="background: #FAFAFA;">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="text-center mb-12">
+        <div class="text-[9.5px] font-bold tracking-[0.24em] uppercase text-gold mb-3 flex items-center justify-center gap-2 before:content-[''] before:w-6 before:h-px before:bg-gold before:opacity-60 after:content-[''] after:w-6 after:h-px after:bg-gold after:opacity-60">Nossos valores</div>
+        <h2 class="text-[28px] font-extrabold text-navy tracking-tight">O que nos guia</h2>
+      </div>
+      <div class="grid grid-cols-3 gap-6">
+        {[
+          { icon: '🤝', title: 'Transparência', desc: 'Cada etapa da negociação é conduzida com total clareza e honestidade, do primeiro contato ao fechamento.' },
+          { icon: '⭐', title: 'Excelência', desc: 'Imóveis criteriosamente selecionados e atendimento de alto nível que reflete o valor que entregamos.' },
+          { icon: '🏖️', title: 'Conhecimento local', desc: 'Mais de uma década no litoral paulista nos dá uma visão única do mercado e das oportunidades.' },
+        ].map((v) => (
+          <div class="p-6 bg-white rounded-[14px] border border-navy/7 shadow-card text-center">
+            <div class="text-[36px] mb-4">{v.icon}</div>
+            <h3 class="text-[14px] font-bold text-navy mb-2">{v.title}</h3>
+            <p class="text-[12.5px] text-navy/55 leading-[1.7]">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Team section -->
+  <div id="equipe" class="py-[72px] px-12 bg-white">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="text-center mb-12">
+        <div class="text-[9.5px] font-bold tracking-[0.24em] uppercase text-gold mb-3 flex items-center justify-center gap-2 before:content-[''] before:w-6 before:h-px before:bg-gold before:opacity-60 after:content-[''] after:w-6 after:h-px after:bg-gold after:opacity-60">Nossa equipe</div>
+        <h2 class="text-[28px] font-extrabold text-navy tracking-tight">Consultores especializados</h2>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6">
+        {team.map((member) => (
+          <div class="bg-white rounded-[14px] border border-navy/8 shadow-card overflow-hidden">
+            <!-- Avatar placeholder -->
+            <div class="h-[180px] flex items-center justify-center" style="background: linear-gradient(145deg, #0B1D33, #0F2442);">
+              <div class="w-20 h-20 rounded-full bg-gold/20 border-2 border-gold/40 flex items-center justify-center text-[32px] font-extrabold text-gold">
+                {member.initial}
+              </div>
+            </div>
+
+            <div class="p-5">
+              <h3 class="text-[14px] font-bold text-navy mb-1">{member.name}</h3>
+              <div class="text-[11px] text-gold font-semibold tracking-[0.04em] mb-3">{member.role}</div>
+              <p class="text-[12px] text-navy/55 leading-[1.65] mb-4">{member.bio}</p>
+
+              <div class="flex gap-3 mb-4">
+                <div class="flex-1 text-center py-2 bg-navy/4 rounded-[8px]">
+                  <div class="text-[15px] font-extrabold text-navy">{member.imoveis}</div>
+                  <div class="text-[9px] text-navy/40 uppercase tracking-wider">Imóveis</div>
+                </div>
+                <div class="flex-1 text-center py-2 bg-navy/4 rounded-[8px]">
+                  <div class="text-[15px] font-extrabold text-navy">{member.anos}</div>
+                  <div class="text-[9px] text-navy/40 uppercase tracking-wider">Anos</div>
+                </div>
+              </div>
+
+              <a
+                href={siteConfig.contact.whatsappHref}
+                target="_blank"
+                rel="noopener"
+                class="flex items-center justify-center gap-2 w-full py-[9px] bg-gold text-navy font-bold text-[11px] tracking-[0.06em] rounded-[8px] no-underline transition-colors hover:bg-gold-dark"
+                style="color: #0B1D33;"
+              >
+                Falar com {member.name.split(' ')[0]}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="py-[72px] px-12 text-center" style="background: #0B1D33;">
+    <div class="max-w-[600px] mx-auto">
+      <h2 class="text-[28px] font-extrabold text-white tracking-tight mb-4">Pronto para encontrar seu imóvel?</h2>
+      <p class="text-[14px] text-white/50 mb-8 leading-relaxed">Nossa equipe está pronta para ajudá-lo com atendimento consultivo e personalizado.</p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/imoveis" class="flex items-center gap-2 px-8 py-3 bg-gold text-navy font-bold text-[12px] tracking-[0.07em] rounded-[9px] no-underline transition-colors hover:bg-gold-dark" style="color: #0B1D33;">
+          Ver imóveis
+        </a>
+        <a href="/contato" class="flex items-center gap-2 px-8 py-3 bg-transparent text-white font-bold text-[12px] tracking-[0.07em] rounded-[9px] no-underline border border-white/25 transition-colors hover:bg-white/10">
+          Fale conosco
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  @media (max-width: 900px) {
+    .grid[style*="grid-template-columns: 1fr 1fr"],
+    .grid-cols-3 { grid-template-columns: 1fr !important; }
+    .px-12 { padding-left: 20px !important; padding-right: 20px !important; }
+  }
+</style>

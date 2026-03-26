@@ -1,0 +1,29 @@
+---
+/**
+ * Logo Component - MGV Imóveis
+ * Baseado no MGV BrandGuide
+ */
+
+interface Props {
+  variant?: 'light' | 'dark';
+  class?: string;
+}
+
+const { variant = 'light', class: className = '' } = Astro.props;
+
+const isDark = variant === 'dark';
+const bgColor = isDark ? 'bg-navy' : 'bg-white';
+const textColor = isDark ? 'text-white' : 'text-navy';
+---
+
+<a href="/" class={`inline-flex items-center gap-3 ${bgColor} rounded-lg p-3 ${className}`}>
+  <div class="flex flex-col items-start">
+    <span class={`font-heading text-[22px] font-extrabold tracking-[-0.01em] ${textColor}`}>
+      MGV
+    </span>
+    <span class={`font-heading text-[9.5px] font-bold tracking-[0.16em] uppercase ${textColor}`}>
+      Imóveis
+    </span>
+  </div>
+  <div class="h-8 w-0.5 bg-gold"></div>
+</a>

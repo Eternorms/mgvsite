@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import PropertyCard from '../../components/ui/PropertyCard.astro';
+import { properties } from '../../data/properties';
+---
+
+<BaseLayout
+  title="Imóveis à Venda e para Alugar"
+  description="Explore o portfólio MGV Imóveis — apartamentos, casas, coberturas e terrenos no litoral paulista."
+>
+  <Header alwaysSolid />
+
+  <!-- Page header -->
+  <div class="pt-[120px] pb-[48px] px-12" style="background: #0B1D33;">
+    <div class="max-w-[1200px] mx-auto">
+      <!-- Breadcrumb -->
+      <div class="flex items-center gap-2 text-[11px] text-white/35 mb-6">
+        <a href="/" class="text-white/35 no-underline hover:text-white/70 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-gold">Imóveis</span>
+      </div>
+      <h1 class="text-[clamp(28px,4vw,42px)] font-extrabold text-white tracking-tight mb-3">
+        Portfólio de Imóveis
+      </h1>
+      <p class="text-[14px] text-white/50 max-w-xl">
+        {properties.length} imóveis disponíveis em Guarujá, Riviera de São Lourenço e Santos.
+      </p>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="sticky top-[72px] z-[100] bg-white border-b border-navy/8 shadow-sm">
+    <div class="max-w-[1200px] mx-auto px-12 py-3 flex items-center gap-3 flex-wrap">
+      <div class="flex items-center gap-2 flex-wrap flex-1">
+
+        <div class="relative">
+          <select id="filter-tipo" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/12 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/30 focus:outline-none focus:border-gold">
+            <option value="">Tipo: Todos</option>
+            <option>Apartamento</option>
+            <option>Casa</option>
+            <option>Cobertura</option>
+            <option>Terreno</option>
+          </select>
+          <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B1D33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+
+        <div class="relative">
+          <select id="filter-quartos" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/12 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/30 focus:outline-none focus:border-gold">
+            <option value="">Quartos: Todos</option>
+            <option value="1">1 quarto</option>
+            <option value="2">2 quartos</option>
+            <option value="3">3 quartos</option>
+            <option value="4">4+ quartos</option>
+          </select>
+          <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B1D33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+
+        <div class="relative">
+          <select id="filter-preco" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/12 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/30 focus:outline-none focus:border-gold">
+            <option value="">Preço: Todos</option>
+            <option value="500000">Até R$ 500k</option>
+            <option value="1000000">Até R$ 1M</option>
+            <option value="2000000">Até R$ 2M</option>
+            <option value="5000000">Até R$ 5M</option>
+          </select>
+          <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B1D33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+
+        <button id="clear-filters" class="text-[11px] font-semibold text-navy/40 bg-transparent border-none cursor-pointer px-3 py-[9px] rounded-[8px] transition-colors hover:text-navy hover:bg-navy/5 hidden">
+          Limpar filtros
+        </button>
+      </div>
+
+      <!-- Result count -->
+      <div class="text-[11px] text-navy/40 font-medium whitespace-nowrap">
+        <span id="result-count">{properties.length}</span> imóveis
+      </div>
+    </div>
+  </div>
+
+  <!-- Properties grid -->
+  <div class="py-[56px] px-12" style="background: #FAFAFA; min-height: 500px;">
+    <div class="max-w-[1200px] mx-auto">
+      <div id="properties-grid" class="grid grid-cols-3 gap-6">
+        {properties.map((property) => (
+          <PropertyCard property={property} data-tipo={property.type} data-quartos={property.beds} data-preco={property.priceRaw} />
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="text-[48px] mb-4">🏡</div>
+        <h3 class="text-[18px] font-bold text-navy mb-2">Nenhum imóvel encontrado</h3>
+        <p class="text-[13px] text-navy/50 mb-6">Tente ajustar os filtros para ver mais resultados.</p>
+        <button onclick="document.getElementById('clear-filters').click()" class="text-[11px] font-bold text-gold border border-gold/30 px-6 py-3 rounded-[8px] cursor-pointer bg-transparent hover:bg-gold/5 transition-colors">
+          Limpar filtros
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const filterTipo = document.getElementById('filter-tipo') as HTMLSelectElement;
+  const filterQuartos = document.getElementById('filter-quartos') as HTMLSelectElement;
+  const filterPreco = document.getElementById('filter-preco') as HTMLSelectElement;
+  const clearBtn = document.getElementById('clear-filters');
+  const resultCount = document.getElementById('result-count');
+  const grid = document.getElementById('properties-grid');
+  const emptyState = document.getElementById('empty-state');
+
+  function applyFilters() {
+    const tipo = filterTipo.value;
+    const quartos = filterQuartos.value ? parseInt(filterQuartos.value) : 0;
+    const preco = filterPreco.value ? parseInt(filterPreco.value) : 0;
+    const hasFilters = tipo || quartos || preco;
+
+    if (clearBtn) clearBtn.classList.toggle('hidden', !hasFilters);
+
+    const cards = grid?.querySelectorAll('article');
+    let visible = 0;
+
+    cards?.forEach((card) => {
+      const cardTipo = card.getAttribute('data-tipo') || '';
+      const cardQuartos = parseInt(card.getAttribute('data-quartos') || '0');
+      const cardPreco = parseInt(card.getAttribute('data-preco') || '0');
+
+      const tipoOk = !tipo || cardTipo === tipo;
+      const quartosOk = !quartos || (quartos === 4 ? cardQuartos >= 4 : cardQuartos === quartos);
+      const precoOk = !preco || cardPreco <= preco;
+
+      const show = tipoOk && quartosOk && precoOk;
+      (card as HTMLElement).style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (resultCount) resultCount.textContent = String(visible);
+    if (emptyState) emptyState.classList.toggle('hidden', visible > 0);
+    if (grid) grid.classList.toggle('hidden', visible === 0);
+  }
+
+  filterTipo?.addEventListener('change', applyFilters);
+  filterQuartos?.addEventListener('change', applyFilters);
+  filterPreco?.addEventListener('change', applyFilters);
+
+  clearBtn?.addEventListener('click', () => {
+    filterTipo.value = '';
+    filterQuartos.value = '';
+    filterPreco.value = '';
+    applyFilters();
+  });
+</script>
+
+<style>
+  @media (max-width: 900px) {
+    .pt-\[120px\] { padding-left: 20px; padding-right: 20px; }
+    .py-\[56px\] { padding-left: 20px; padding-right: 20px; }
+    #properties-grid { grid-template-columns: 1fr !important; gap: 16px; }
+    .sticky > div { padding-left: 20px; padding-right: 20px; }
+  }
+  @media (min-width: 901px) and (max-width: 1100px) {
+    #properties-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+</style>

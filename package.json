@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "pencil:watch": "node automation/watch.js",
-    "auto:start": "concurrently \"npm run dev\" \"npm run pencil:watch\" --names \"ASTRO,WATCH\" --prefix-colors \"cyan,yellow\""
+    "auto:commit": "node automation/auto-commit.mjs",
+    "auto:start": "concurrently \"npm run dev\" \"npm run pencil:watch\" \"npm run auto:commit\" --names \"ASTRO,WATCH,COMMIT\" --prefix-colors \"cyan,yellow,green\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
@@ -25,6 +26,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "chokidar": "^4.0.3",
     "concurrently": "^9.2.1",
     "dotenv": "^17.3.1",
