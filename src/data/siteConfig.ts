@@ -37,24 +37,28 @@ export const siteConfig = {
       title: 'Apartamento Frente Mar — Enseada',
       location: 'Enseada, Guarujá · R$ 1,85M',
       gradient: 'from-[#0d2848] via-[#081c34] to-[#122e56]',
+      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80',
     },
     {
       badge: 'Exclusivo',
       title: 'Cobertura Duplex — Riviera',
       location: 'Riviera de São Lourenço · R$ 3,20M',
       gradient: 'from-[#28190a] via-[#180f05] to-[#382210]',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80',
     },
     {
       badge: 'Novo',
       title: 'Casa em Condomínio Fechado',
       location: 'Jardim Acapulco, Guarujá · R$ 2,40M',
       gradient: 'from-[#182808] via-[#0e1e05] to-[#223614]',
+      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80',
     },
     {
       badge: 'Destaque',
       title: 'Cobertura Triplex — Enseada',
       location: 'Enseada, Guarujá · R$ 4,80M',
       gradient: 'from-[#08162a] via-[#050e1c] to-[#0e2238]',
+      image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1920&q=80',
     },
   ],
 };

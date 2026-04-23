@@ -3,8 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import HeroSection from '../components/home/HeroSection.astro';
+import PropertySearch from '../components/home/PropertySearch.astro';
+import LaunchesCard from '../components/home/LaunchesCard.astro';
 import FeaturesBar from '../components/home/FeaturesBar.astro';
-import FeaturedProperties from '../components/home/FeaturedProperties.astro';
 ---
 
 <BaseLayout
@@ -12,8 +13,11 @@ import FeaturedProperties from '../components/home/FeaturedProperties.astro';
   description="Apartamentos, casas e coberturas no litoral paulista. Atendimento consultivo, exclusivo e personalizado. Guarujá, Riviera de São Lourenço e Santos."
 >
   <Header />
-  <HeroSection />
+  <div style="position: relative;">
+    <HeroSection />
+    <PropertySearch />
+    <LaunchesCard />
+  </div>
   <FeaturesBar />
-  <FeaturedProperties />
   <Footer />
 </BaseLayout>

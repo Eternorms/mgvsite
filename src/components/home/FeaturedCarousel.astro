@@ -1,0 +1,127 @@
+---
+import { properties } from '../../data/properties';
+import PropertyCard from '../ui/PropertyCard.astro';
+
+const items = properties;
+---
+
+<section class="featured-carousel" style="background: #ffffff; padding: 72px 0 64px;">
+
+  <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
+
+    <!-- Header row -->
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 36px;">
+      <div>
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A84C; margin-bottom: 10px;">
+          Portfólio selecionado
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 36px); font-weight: 700; color: #0B1D33; line-height: 1.15; margin: 0;">
+          Imóveis em destaque
+        </h2>
+      </div>
+
+      <!-- Arrow controls -->
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <button id="fc-prev" aria-label="Anterior" style="width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid rgba(11,29,51,0.14); background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B1D33" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button id="fc-next" aria-label="Próximo" style="width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid rgba(11,29,51,0.14); background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B1D33" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Carousel track wrapper -->
+    <div id="fc-wrapper" style="overflow: hidden;">
+      <div id="fc-track" style="display: flex; gap: 24px; transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); will-change: transform;">
+        {items.map((property) => (
+          <div class="fc-card" style="flex-shrink: 0;">
+            <PropertyCard property={property} />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Ver todos link -->
+    <div style="margin-top: 40px; text-align: center;">
+      <a href="/imoveis" style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0B1D33; text-decoration: none; border-bottom: 1.5px solid rgba(11,29,51,0.18); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s;">
+        Ver portfólio completo
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .fc-card {
+    width: calc((100% - 48px) / 3);
+  }
+  #fc-prev:hover, #fc-next:hover {
+    background: #0B1D33 !important;
+    border-color: #0B1D33 !important;
+  }
+  #fc-prev:hover svg, #fc-next:hover svg {
+    stroke: #ffffff;
+  }
+
+  @media (max-width: 1024px) {
+    .fc-card { width: calc((100% - 24px) / 2); }
+  }
+  @media (max-width: 640px) {
+    .fc-card { width: calc(100% - 32px); }
+    #fc-wrapper { padding: 0; }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('fc-track') as HTMLElement | null;
+  const wrapper = document.getElementById('fc-wrapper') as HTMLElement | null;
+  const prevBtn = document.getElementById('fc-prev');
+  const nextBtn = document.getElementById('fc-next');
+  const cards = document.querySelectorAll('.fc-card');
+
+  if (!track || !wrapper || cards.length === 0) {
+    // Skip if elements not found
+  } else {
+    let currentIndex = 0;
+    const gap = 24;
+
+    function getVisibleCount(): number {
+      const w = wrapper!.offsetWidth;
+      if (w <= 640) return 1;
+      if (w <= 1024) return 2;
+      return 3;
+    }
+
+    function getCardWidth(): number {
+      const visible = getVisibleCount();
+      return (wrapper!.offsetWidth - gap * (visible - 1)) / visible;
+    }
+
+    function maxIndex(): number {
+      return Math.max(0, cards.length - getVisibleCount());
+    }
+
+    function updateButtons() {
+      if (prevBtn) prevBtn.style.opacity = currentIndex === 0 ? '0.35' : '1';
+      if (nextBtn) nextBtn.style.opacity = currentIndex >= maxIndex() ? '0.35' : '1';
+    }
+
+    function goTo(index: number) {
+      currentIndex = Math.max(0, Math.min(index, maxIndex()));
+      const offset = currentIndex * (getCardWidth() + gap);
+      track!.style.transform = `translateX(-${offset}px)`;
+      updateButtons();
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
+
+    // Recalculate on resize
+    window.addEventListener('resize', () => goTo(Math.min(currentIndex, maxIndex())));
+
+    // Init
+    updateButtons();
+  }
+</script>

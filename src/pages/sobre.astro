@@ -75,7 +75,7 @@ const team = [
 
         <div class="grid grid-cols-2 gap-4">
           {siteConfig.stats.map((stat) => (
-            <div class="p-5 rounded-[12px] border border-navy/7 bg-off-white">
+            <div class="p-5 rounded-[12px] border border-navy/7 bg-offwhite">
               <div class="text-[32px] font-extrabold text-navy leading-none tracking-tight mb-1">{stat.value}</div>
               <div class="text-[11px] text-navy/45 uppercase tracking-wider">{stat.label}</div>
             </div>
@@ -98,7 +98,7 @@ const team = [
           { icon: '⭐', title: 'Excelência', desc: 'Imóveis criteriosamente selecionados e atendimento de alto nível que reflete o valor que entregamos.' },
           { icon: '🏖️', title: 'Conhecimento local', desc: 'Mais de uma década no litoral paulista nos dá uma visão única do mercado e das oportunidades.' },
         ].map((v) => (
-          <div class="p-6 bg-white rounded-[14px] border border-navy/7 shadow-card text-center">
+          <div class="p-6 bg-white rounded-[14px] border border-navy/7 shadow-[0_4px_20px_rgba(11,29,51,0.08)] text-center">
             <div class="text-[36px] mb-4">{v.icon}</div>
             <h3 class="text-[14px] font-bold text-navy mb-2">{v.title}</h3>
             <p class="text-[12.5px] text-navy/55 leading-[1.7]">{v.desc}</p>
@@ -118,7 +118,7 @@ const team = [
 
       <div class="grid grid-cols-3 gap-6">
         {team.map((member) => (
-          <div class="bg-white rounded-[14px] border border-navy/8 shadow-card overflow-hidden">
+          <div class="bg-white rounded-[14px] border border-navy/8 shadow-[0_4px_20px_rgba(11,29,51,0.08)] overflow-hidden">
             <!-- Avatar placeholder -->
             <div class="h-[180px] flex items-center justify-center" style="background: linear-gradient(145deg, #0B1D33, #0F2442);">
               <div class="w-20 h-20 rounded-full bg-gold/20 border-2 border-gold/40 flex items-center justify-center text-[32px] font-extrabold text-gold">

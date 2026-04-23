@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Auto-Commit & Watch",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "auto:start"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "mgv-automation"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Auto-Commit Only",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "auto:commit"],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

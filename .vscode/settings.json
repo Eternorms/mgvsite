@@ -6,5 +6,7 @@
   "[pen]": {
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 500
-  }
+  },
+
+  "task.allowAutomaticTasks": "on"
 }

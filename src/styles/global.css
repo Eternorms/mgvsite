@@ -8,14 +8,16 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
-    @apply font-body text-graphite antialiased bg-off-white;
+    @apply font-sans text-graphite antialiased bg-offwhite;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-navy;
+    @apply font-sans text-navy;
   }
 }
 
@@ -25,12 +27,12 @@
      ======================================== */
   .btn {
     @apply inline-flex items-center justify-center px-[22px] py-[11px]
-           font-heading text-button uppercase tracking-[0.08em]
+           font-sans text-xs uppercase tracking-[0.08em]
            rounded-md transition-all duration-300;
   }
 
   .btn-primary {
-    @apply btn bg-gold text-navy hover:bg-gold-dark shadow-gold;
+    @apply btn bg-gold text-navy hover:bg-gold-dark shadow-[0_6px_24px_rgba(201,168,76,0.32)];
   }
 
   .btn-navy {
@@ -60,24 +62,24 @@
      CARDS - MGV BrandGuide
      ======================================== */
   .card {
-    @apply bg-white rounded-lg shadow-sm
+    @apply bg-white rounded-lg shadow
            border border-navy/[0.07]
            transition-all duration-300
-           hover:shadow-card;
+           hover:shadow-[0_4px_20px_rgba(11,29,51,0.08)];
   }
 
   /* ========================================
      INPUTS - MGV BrandGuide
      ======================================== */
   .input-label {
-    @apply block text-input-label uppercase text-navy/40 mb-[6px];
+    @apply block text-[9px] uppercase text-navy/40 mb-[6px];
   }
 
   .input-field {
     @apply w-full px-[14px] py-[11px]
-           bg-off-white rounded-md
+           bg-offwhite rounded-md
            border-[1.5px] border-navy/10
-           font-body text-[12.5px] text-graphite
+           font-sans text-[12.5px] text-graphite
            transition-colors duration-200
            focus:border-gold focus:outline-none;
   }
@@ -87,7 +89,7 @@
      ======================================== */
   .badge {
     @apply inline-flex items-center px-3 py-1
-           text-caption font-heading font-semibold uppercase
+           text-[10px] font-sans font-semibold uppercase
            tracking-wider rounded-sm;
   }
 
@@ -107,11 +109,11 @@
      LAYOUT - MGV BrandGuide
      ======================================== */
   .section {
-    @apply py-2xl md:py-3xl;
+    @apply py-16 md:py-24;
   }
 
   .container-custom {
-    @apply max-w-7xl mx-auto px-md sm:px-lg lg:px-xl;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-10;
   }
 
   /* ========================================

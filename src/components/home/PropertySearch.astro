@@ -1,0 +1,160 @@
+---
+import { properties } from '../../data/properties';
+
+const total = properties.length;
+
+const tipos = ['Apartamento', 'Casa', 'Cobertura', 'Terreno'];
+const regioes = ['Guarujá', 'Riviera', 'Santos'];
+const quartos = [
+  { label: '2+ quartos', value: '2' },
+  { label: '3+ quartos', value: '3' },
+  { label: '4+ quartos', value: '4' },
+];
+const precos = [
+  { label: 'Até R$ 1M',  value: '1000000' },
+  { label: 'Até R$ 2M',  value: '2000000' },
+  { label: 'R$ 2M+',     value: '5000000' },
+];
+---
+
+<section class="property-search" style="background: #F8F7F5; padding: 72px 48px 80px;">
+
+  <div style="max-width: 760px;">
+
+    <!-- Header -->
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px;">
+      <div>
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A84C; margin-bottom: 10px;">
+          Busca avançada
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 36px); font-weight: 700; color: #0B1D33; line-height: 1.15; margin: 0;">
+          Encontre seu imóvel ideal
+        </h2>
+      </div>
+      <span style="font-size: 12px; font-weight: 600; color: #C9A84C; letter-spacing: 0.04em;">
+        {total} imóveis disponíveis
+      </span>
+    </div>
+
+    <!-- Filter form -->
+    <form action="/imoveis" method="get" id="search-form">
+
+      <!-- Row 1: Tipo + Região -->
+      <div class="filter-row" style="display: flex; gap: 48px; margin-bottom: 20px; flex-wrap: wrap;">
+
+        <div class="filter-group">
+          <span class="filter-label">Tipo</span>
+          <div class="chips-row">
+            {tipos.map(t => (
+              <a href={`/imoveis?tipo=${t}`} class="chip">{t}</a>
+            ))}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Região</span>
+          <div class="chips-row">
+            {regioes.map(r => (
+              <a href={`/imoveis?regiao=${r}`} class="chip">{r}</a>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Row 2: Quartos + Preço -->
+      <div class="filter-row" style="display: flex; gap: 48px; margin-bottom: 40px; flex-wrap: wrap;">
+
+        <div class="filter-group">
+          <span class="filter-label">Quartos</span>
+          <div class="chips-row">
+            {quartos.map(q => (
+              <a href={`/imoveis?quartos=${q.value}`} class="chip">{q.label}</a>
+            ))}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Preço máximo</span>
+          <div class="chips-row">
+            {precos.map(p => (
+              <a href={`/imoveis?preco=${p.value}`} class="chip">{p.label}</a>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <a
+          href="/imoveis"
+          style="display: inline-flex; align-items: center; gap: 8px; background: #C9A84C; color: #0B1D33; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border-radius: 4px; transition: background 0.2s;"
+          class="search-cta"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Ver todos os imóveis
+        </a>
+        <span style="font-size: 11px; color: rgba(11,29,51,0.35); font-family: 'Montserrat', sans-serif;">
+          ou selecione um filtro acima para refinar
+        </span>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<style>
+  .filter-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(11,29,51,0.40);
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .chips-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0B1D33;
+    background: #ffffff;
+    border: 1.5px solid rgba(11,29,51,0.12);
+    border-radius: 4px;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+  .chip:hover {
+    background: #0B1D33;
+    border-color: #0B1D33;
+    color: #ffffff;
+  }
+  .chip.active {
+    background: #C9A84C;
+    border-color: #C9A84C;
+    color: #0B1D33;
+  }
+  .search-cta:hover {
+    background: #A8882E !important;
+  }
+  @media (max-width: 900px) {
+    .property-search {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    .filter-row {
+      gap: 28px !important;
+    }
+  }
+</style>

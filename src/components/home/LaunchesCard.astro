@@ -1,0 +1,200 @@
+---
+import { siteConfig } from '../../data/siteConfig';
+
+const slides = siteConfig.heroSlides;
+---
+
+<div class="launches-card" id="launches-card" style="position:absolute;right:48px;top:calc(100vh - 40px);width:600px;height:520px;z-index:20;">
+
+  <!-- Header branco -->
+  <div class="lc-header">
+    <span class="lc-title">LANÇAMENTOS</span>
+    <span class="lc-subtitle">Novidades do mercado</span>
+  </div>
+
+  <!-- Divider -->
+  <div style="height: 1px; background: rgba(11,29,51,0.08); flex-shrink: 0;"></div>
+
+  <!-- Slides (só a imagem) -->
+  <div class="lc-slides-wrap">
+    {slides.map((slide, i) => (
+      <img
+        src={slide.image}
+        alt={slide.title}
+        data-loc={slide.location}
+        class={`lc-img${i === 0 ? ' lc-active' : ''}`}
+        data-index={i}
+        loading="eager"
+      />
+    ))}
+  </div>
+
+  <!-- Info strip fixa na base (fora dos slides) -->
+  <div class="lc-strip">
+    <div class="lc-info">
+      <span class="lc-name" id="lc-name">{slides[0].title}</span>
+      <span class="lc-loc" id="lc-loc">{slides[0].location}</span>
+    </div>
+    <div class="lc-dots">
+      {slides.slice(0, 3).map((_, j) => (
+        <button class={`lc-dot${j === 0 ? ' lc-dot-active' : ''}`} data-to={j}></button>
+      ))}
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .launches-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #0B1D33;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.32), 0 4px 16px rgba(0,0,0,0.18);
+  }
+  .lc-header {
+    background: #ffffff;
+    padding: 12px 20px 10px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .lc-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0B1D33;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .lc-subtitle {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: #C9A84C;
+  }
+  .lc-slides-wrap {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+  }
+  .lc-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+  }
+  .lc-img.lc-active {
+    opacity: 1;
+  }
+  .lc-strip {
+    height: 58px;
+    background: #081c34;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .lc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .lc-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lc-loc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #C9A84C;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lc-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .lc-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.28);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .lc-dot.lc-dot-active {
+    background: #C9A84C;
+    transform: scale(1.2);
+  }
+  @media (max-width: 1280px) {
+    .launches-card { display: none; }
+  }
+</style>
+
+<script>
+  // Position card so it starts exactly 40px above the hero/search boundary
+  function positionCard() {
+    const card = document.getElementById('launches-card') as HTMLElement | null;
+    const hero = document.querySelector('.hero') as HTMLElement | null;
+    if (!card || !hero) return;
+    const parent = card.offsetParent as HTMLElement | null;
+    const heroBottom = hero.getBoundingClientRect().bottom + window.scrollY;
+    const parentTop  = parent ? parent.getBoundingClientRect().top + window.scrollY : 0;
+    card.style.top = (heroBottom - parentTop - 40) + 'px';
+  }
+  positionCard();
+  window.addEventListener('resize', positionCard);
+
+  // Carousel
+  const card = document.getElementById('launches-card');
+  if (card) {
+    const imgs   = Array.from(card.querySelectorAll<HTMLElement>('.lc-img'));
+    const dots   = Array.from(card.querySelectorAll<HTMLButtonElement>('.lc-dot'));
+    const nameEl = card.querySelector<HTMLElement>('#lc-name');
+    const locEl  = card.querySelector<HTMLElement>('#lc-loc');
+
+    const titles    = imgs.map(el => el.getAttribute('alt') ?? '');
+    const locations = imgs.map(el => el.dataset.loc ?? '');
+
+    let current = 0;
+
+    function goTo(n: number) {
+      imgs[current].classList.remove('lc-active');
+      dots[current]?.classList.remove('lc-dot-active');
+
+      current = (n + imgs.length) % imgs.length;
+
+      imgs[current].classList.add('lc-active');
+      dots[current]?.classList.add('lc-dot-active');
+      if (nameEl) nameEl.textContent = titles[current];
+      if (locEl) locEl.textContent = locations[current];
+    }
+
+    dots.forEach(dot => {
+      const to = parseInt(dot.dataset.to ?? '0');
+      dot.addEventListener('click', () => goTo(to));
+    });
+
+    setInterval(() => goTo(current + 1), 5000);
+  }
+</script>
