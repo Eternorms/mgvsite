@@ -17,12 +17,12 @@ if (!property) {
   return Astro.redirect('/imoveis');
 }
 
-const { title, location, city, price, type, badge, badgeType, beds, baths, area, gradient, description } = property;
+const { title, location, city, price, type, badge, badgeType, beds, baths, area, image, gallery, description } = property;
 
 const badgeClasses: Record<string, string> = {
   gold: 'bg-gold text-navy',
-  navy: 'bg-navy/85 text-white border border-gold/30',
-  excl: 'bg-gold/14 text-gold border border-gold/35',
+  navy: 'bg-navy text-white border border-gold/50',
+  excl: 'bg-gold/10 text-gold border border-gold/50',
 };
 
 // Related: other properties excluding current
@@ -34,18 +34,18 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
 
   <!-- Hero image -->
   <div class="relative pt-[72px]" style="height: 520px;">
-    <div class="absolute inset-0" style={`background: ${gradient};`}></div>
-    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(8,22,40,.4) 0%, rgba(8,22,40,.7) 100%);"></div>
+    <img src={image} alt={title} class="absolute inset-0 h-full w-full object-cover" loading="eager" />
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(8,22,40,.28) 0%, rgba(8,22,40,.76) 100%);"></div>
 
     <!-- Breadcrumb + badge overlay -->
     <div class="absolute bottom-10 left-12 z-10">
       <!-- Breadcrumb -->
-      <div class="flex items-center gap-2 text-[11px] text-white/45 mb-4">
-        <a href="/" class="text-white/45 no-underline hover:text-white/70 transition-colors">Home</a>
+      <div class="flex items-center gap-2 text-[11px] text-white/50 mb-4">
+        <a href="/" class="text-white/50 no-underline hover:text-white transition-colors">Home</a>
         <span>/</span>
-        <a href="/imoveis" class="text-white/45 no-underline hover:text-white/70 transition-colors">Imóveis</a>
+        <a href="/imoveis" class="text-white/50 no-underline hover:text-white transition-colors">Imóveis</a>
         <span>/</span>
-        <span class="text-white/70">{title}</span>
+        <span class="text-white">{title}</span>
       </div>
 
       {badge && (
@@ -56,15 +56,15 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
       <h1 class="text-[clamp(24px,3.5vw,40px)] font-extrabold text-white tracking-tight leading-tight mb-2" style="text-shadow: 0 2px 20px rgba(0,0,0,.4);">
         {title}
       </h1>
-      <div class="flex items-center gap-1.5 text-[13px] text-white/60">
+      <div class="flex items-center gap-1.5 text-[13px] text-white/50">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.68 2 6 4.68 6 8c0 4.5 6 14 6 14s6-9.5 6-14c0-3.32-2.68-6-6-6z"/><circle cx="12" cy="8" r="2"/></svg>
         {location}, {city}
       </div>
     </div>
 
     <!-- Price badge top right -->
-    <div class="absolute top-[100px] right-12 z-10 bg-navy/80 backdrop-blur-md rounded-[10px] px-5 py-3 text-right">
-      <div class="text-[10px] font-bold tracking-[0.15em] uppercase text-white/40 mb-1">Preço</div>
+    <div class="absolute top-[100px] right-12 z-10 bg-navy backdrop-blur-md rounded-[10px] px-5 py-3 text-right">
+      <div class="text-[10px] font-bold tracking-[0.15em] uppercase text-white/50 mb-1">Preço</div>
       <div class="text-[26px] font-extrabold text-gold tracking-tight leading-none">{price}</div>
     </div>
   </div>
@@ -76,45 +76,47 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
       <!-- Left: details -->
       <div>
         <!-- Specs bar -->
-        <div class="flex gap-8 p-6 bg-white rounded-[12px] border border-navy/7 shadow-[0_4px_20px_rgba(11,29,51,0.08)] mb-8">
+        <div class="flex gap-8 p-6 bg-white rounded-[12px] border border-navy/10 shadow-[0_4px_20px_rgba(11,29,51,0.08)] mb-8">
           {beds > 0 && (
             <div class="flex flex-col items-center gap-1">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16M2 8h18a2 2 0 012 2v10M2 16h20"/><path d="M6 8V4"/></svg>
               <span class="text-[20px] font-extrabold text-navy leading-none">{beds}</span>
-              <span class="text-[10px] font-medium text-navy/45 uppercase tracking-wider">Quartos</span>
+              <span class="text-[10px] font-medium text-navy/50 uppercase tracking-wider">Quartos</span>
             </div>
           )}
           {baths > 0 && (
             <div class="flex flex-col items-center gap-1">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 A3 3 0 0 1 15 6 L15 11 L3 11 L3 13 A9 9 0 0 0 21 13 L21 11 L15 11"/></svg>
               <span class="text-[20px] font-extrabold text-navy leading-none">{baths}</span>
-              <span class="text-[10px] font-medium text-navy/45 uppercase tracking-wider">Banheiros</span>
+              <span class="text-[10px] font-medium text-navy/50 uppercase tracking-wider">Banheiros</span>
             </div>
           )}
           <div class="flex flex-col items-center gap-1">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
             <span class="text-[20px] font-extrabold text-navy leading-none">{area}</span>
-            <span class="text-[10px] font-medium text-navy/45 uppercase tracking-wider">m² Área</span>
+            <span class="text-[10px] font-medium text-navy/50 uppercase tracking-wider">m² Área</span>
           </div>
           <div class="flex flex-col items-center gap-1">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             <span class="text-[14px] font-extrabold text-navy leading-none">{type}</span>
-            <span class="text-[10px] font-medium text-navy/45 uppercase tracking-wider">Tipo</span>
+            <span class="text-[10px] font-medium text-navy/50 uppercase tracking-wider">Tipo</span>
           </div>
         </div>
 
         <!-- Description -->
         <h2 class="text-[18px] font-bold text-navy mb-4">Sobre o imóvel</h2>
-        <p class="text-[14px] text-navy/65 leading-[1.8] mb-8">{description}</p>
+        <p class="text-[14px] text-navy/50 leading-[1.8] mb-8">{description}</p>
 
-        <!-- Gallery placeholder -->
         <h2 class="text-[18px] font-bold text-navy mb-4">Galeria de fotos</h2>
         <div class="grid grid-cols-3 gap-3 mb-8">
-          {[0,1,2,3,4,5].map((i) => (
-            <div
+          {gallery.map((src, i) => (
+            <img
+              src={src}
+              alt={`${title} - foto ${i + 1}`}
               class={`rounded-[10px] overflow-hidden ${i === 0 ? 'col-span-2 row-span-2' : ''}`}
-              style={`height: ${i === 0 ? '280px' : '130px'}; background: ${gradient}; opacity: ${0.7 + i * 0.05};`}
-            ></div>
+              style={`height: ${i === 0 ? '280px' : '130px'}; width: 100%; object-fit: cover;`}
+              loading="lazy"
+            />
           ))}
         </div>
 
@@ -122,7 +124,7 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
         <h2 class="text-[18px] font-bold text-navy mb-4">Características</h2>
         <div class="grid grid-cols-2 gap-3">
           {['Varanda gourmet', 'Piscina no condomínio', 'Academia', 'Salão de festas', 'Portaria 24h', 'Estacionamento coberto', 'Elevador', 'Vista para o mar'].map((feat) => (
-            <div class="flex items-center gap-2 text-[13px] text-navy/65">
+            <div class="flex items-center gap-2 text-[13px] text-navy/50">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
               {feat}
             </div>
@@ -134,29 +136,29 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
       <div class="sticky top-[90px] self-start">
 
         <!-- Agent card -->
-        <div class="bg-white rounded-[14px] border border-navy/8 shadow-[0_4px_20px_rgba(11,29,51,0.08)] p-6 mb-5">
+        <div class="bg-white rounded-[14px] border border-navy/10 shadow-[0_4px_20px_rgba(11,29,51,0.08)] p-6 mb-5">
           <div class="flex items-center gap-4 mb-5">
             <div class="w-16 h-16 rounded-full bg-gradient-to-br from-navy to-navy-mid flex items-center justify-center text-[24px] font-bold text-gold shrink-0">M</div>
             <div>
               <div class="text-[14px] font-bold text-navy">Marcos Vinícius</div>
-              <div class="text-[11px] text-navy/45 mt-0.5">Consultor Sênior · MGV Imóveis</div>
+              <div class="text-[11px] text-navy/50 mt-0.5">Consultor Sênior · MGV Imóveis</div>
               <div class="flex items-center gap-1 mt-1">
                 {[1,2,3,4,5].map(() => (
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="#C9A84C" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 ))}
-                <span class="text-[10px] text-navy/40 ml-1">5.0</span>
+                <span class="text-[10px] text-navy/50 ml-1">5.0</span>
               </div>
             </div>
           </div>
 
           <div class="flex gap-3 mb-5">
-            <div class="flex-1 text-center py-2 bg-navy/4 rounded-[8px]">
+            <div class="flex-1 text-center py-2 bg-navy/5 rounded-[8px]">
               <div class="text-[16px] font-extrabold text-navy">47+</div>
-              <div class="text-[9px] text-navy/40 uppercase tracking-wider">Imóveis</div>
+              <div class="text-[9px] text-navy/50 uppercase tracking-wider">Imóveis</div>
             </div>
-            <div class="flex-1 text-center py-2 bg-navy/4 rounded-[8px]">
+            <div class="flex-1 text-center py-2 bg-navy/5 rounded-[8px]">
               <div class="text-[16px] font-extrabold text-navy">12</div>
-              <div class="text-[9px] text-navy/40 uppercase tracking-wider">Anos</div>
+              <div class="text-[9px] text-navy/50 uppercase tracking-wider">Anos</div>
             </div>
           </div>
 
@@ -172,7 +174,7 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
 
           <a
             href={siteConfig.contact.phoneHref}
-            class="flex items-center justify-center gap-2 w-full py-3 bg-transparent text-navy font-bold text-[12px] tracking-[0.05em] rounded-[9px] no-underline border border-navy/15 transition-colors hover:border-navy"
+            class="flex items-center justify-center gap-2 w-full py-3 bg-transparent text-navy font-bold text-[12px] tracking-[0.05em] rounded-[9px] no-underline border border-navy/20 transition-colors hover:border-navy"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             {siteConfig.contact.phone}
@@ -180,23 +182,23 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
         </div>
 
         <!-- Quick form -->
-        <div class="bg-white rounded-[14px] border border-navy/8 shadow-[0_4px_20px_rgba(11,29,51,0.08)] p-6">
+        <div class="bg-white rounded-[14px] border border-navy/10 shadow-[0_4px_20px_rgba(11,29,51,0.08)] p-6">
           <div class="text-[13px] font-bold text-navy mb-4">Agende uma visita</div>
           <form class="flex flex-col gap-3">
             <input
               type="text"
               placeholder="Seu nome"
-              class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/30"
+              class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/50"
             />
             <input
               type="tel"
               placeholder="Seu telefone / WhatsApp"
-              class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/30"
+              class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/50"
             />
             <textarea
               placeholder="Mensagem (opcional)"
               rows={3}
-              class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/30 resize-none"
+              class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/50 resize-none"
             ></textarea>
             <button
               type="submit"
@@ -236,5 +238,10 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
     }
     .sticky { position: static !important; }
     .px-12 { padding-left: 20px !important; padding-right: 20px !important; }
+    .grid-cols-3 { grid-template-columns: 1fr 1fr !important; }
+    .col-span-2 { grid-column: span 2 / span 2; }
+    .row-span-2 { grid-row: span 1 / span 1; }
+    .absolute.bottom-10.left-12 { left: 20px !important; right: 20px; }
+    .absolute.top-\[100px\].right-12 { right: 20px !important; }
   }
 </style>

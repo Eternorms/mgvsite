@@ -16,8 +16,8 @@ import { properties } from '../../data/properties';
   <div class="pt-[120px] pb-[48px] px-12" style="background: #0B1D33;">
     <div class="max-w-[1200px] mx-auto">
       <!-- Breadcrumb -->
-      <div class="flex items-center gap-2 text-[11px] text-white/35 mb-6">
-        <a href="/" class="text-white/35 no-underline hover:text-white/70 transition-colors">Home</a>
+      <div class="flex items-center gap-2 text-[11px] text-white/50 mb-6">
+        <a href="/" class="text-white/50 no-underline hover:text-white transition-colors">Home</a>
         <span>/</span>
         <span class="text-gold">Imóveis</span>
       </div>
@@ -31,12 +31,12 @@ import { properties } from '../../data/properties';
   </div>
 
   <!-- Filter bar -->
-  <div class="sticky top-[72px] z-[100] bg-white border-b border-navy/8 shadow-sm">
+  <div class="sticky top-[72px] z-[100] bg-white border-b border-navy/10 shadow-sm">
     <div class="max-w-[1200px] mx-auto px-12 py-3 flex items-center gap-3 flex-wrap">
       <div class="flex items-center gap-2 flex-wrap flex-1">
 
         <div class="relative">
-          <select id="filter-tipo" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/12 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/30 focus:outline-none focus:border-gold">
+          <select id="filter-tipo" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/50 focus:outline-none focus:border-gold">
             <option value="">Tipo: Todos</option>
             <option>Apartamento</option>
             <option>Casa</option>
@@ -47,7 +47,7 @@ import { properties } from '../../data/properties';
         </div>
 
         <div class="relative">
-          <select id="filter-quartos" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/12 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/30 focus:outline-none focus:border-gold">
+          <select id="filter-quartos" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/50 focus:outline-none focus:border-gold">
             <option value="">Quartos: Todos</option>
             <option value="1">1 quarto</option>
             <option value="2">2 quartos</option>
@@ -58,7 +58,7 @@ import { properties } from '../../data/properties';
         </div>
 
         <div class="relative">
-          <select id="filter-preco" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/12 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/30 focus:outline-none focus:border-gold">
+          <select id="filter-preco" class="appearance-none text-[11.5px] font-semibold text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[9px] pr-8 cursor-pointer transition-colors hover:border-navy/50 focus:outline-none focus:border-gold">
             <option value="">Preço: Todos</option>
             <option value="500000">Até R$ 500k</option>
             <option value="1000000">Até R$ 1M</option>
@@ -68,13 +68,13 @@ import { properties } from '../../data/properties';
           <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B1D33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
 
-        <button id="clear-filters" class="text-[11px] font-semibold text-navy/40 bg-transparent border-none cursor-pointer px-3 py-[9px] rounded-[8px] transition-colors hover:text-navy hover:bg-navy/5 hidden">
+        <button id="clear-filters" class="text-[11px] font-semibold text-navy/50 bg-transparent border-none cursor-pointer px-3 py-[9px] rounded-[8px] transition-colors hover:text-navy hover:bg-navy/5 hidden">
           Limpar filtros
         </button>
       </div>
 
       <!-- Result count -->
-      <div class="text-[11px] text-navy/40 font-medium whitespace-nowrap">
+      <div class="text-[11px] text-navy/50 font-medium whitespace-nowrap">
         <span id="result-count">{properties.length}</span> imóveis
       </div>
     </div>
@@ -85,7 +85,13 @@ import { properties } from '../../data/properties';
     <div class="max-w-[1200px] mx-auto">
       <div id="properties-grid" class="grid grid-cols-3 gap-6">
         {properties.map((property) => (
-          <PropertyCard property={property} data-tipo={property.type} data-quartos={property.beds} data-preco={property.priceRaw} />
+          <PropertyCard
+            property={property}
+            data-tipo={property.type}
+            data-quartos={property.beds}
+            data-preco={property.priceRaw}
+            data-regiao={`${property.location} ${property.city}`}
+          />
         ))}
       </div>
 
@@ -94,7 +100,7 @@ import { properties } from '../../data/properties';
         <div class="text-[48px] mb-4">🏡</div>
         <h3 class="text-[18px] font-bold text-navy mb-2">Nenhum imóvel encontrado</h3>
         <p class="text-[13px] text-navy/50 mb-6">Tente ajustar os filtros para ver mais resultados.</p>
-        <button onclick="document.getElementById('clear-filters').click()" class="text-[11px] font-bold text-gold border border-gold/30 px-6 py-3 rounded-[8px] cursor-pointer bg-transparent hover:bg-gold/5 transition-colors">
+        <button onclick="document.getElementById('clear-filters').click()" class="text-[11px] font-bold text-gold border border-gold/50 px-6 py-3 rounded-[8px] cursor-pointer bg-transparent hover:bg-gold/5 transition-colors">
           Limpar filtros
         </button>
       </div>
@@ -117,7 +123,9 @@ import { properties } from '../../data/properties';
     const tipo = filterTipo.value;
     const quartos = filterQuartos.value ? parseInt(filterQuartos.value) : 0;
     const preco = filterPreco.value ? parseInt(filterPreco.value) : 0;
-    const hasFilters = tipo || quartos || preco;
+    const params = new URLSearchParams(window.location.search);
+    const regiao = (params.get('regiao') || params.get('q') || '').toLowerCase();
+    const hasFilters = Boolean(tipo || quartos || preco || regiao);
 
     if (clearBtn) clearBtn.classList.toggle('hidden', !hasFilters);
 
@@ -128,12 +136,14 @@ import { properties } from '../../data/properties';
       const cardTipo = card.getAttribute('data-tipo') || '';
       const cardQuartos = parseInt(card.getAttribute('data-quartos') || '0');
       const cardPreco = parseInt(card.getAttribute('data-preco') || '0');
+      const cardRegiao = (card.getAttribute('data-regiao') || '').toLowerCase();
 
       const tipoOk = !tipo || cardTipo === tipo;
       const quartosOk = !quartos || (quartos === 4 ? cardQuartos >= 4 : cardQuartos === quartos);
       const precoOk = !preco || cardPreco <= preco;
+      const regiaoOk = !regiao || cardRegiao.includes(regiao);
 
-      const show = tipoOk && quartosOk && precoOk;
+      const show = tipoOk && quartosOk && precoOk && regiaoOk;
       (card as HTMLElement).style.display = show ? '' : 'none';
       if (show) visible++;
     });
@@ -151,8 +161,18 @@ import { properties } from '../../data/properties';
     filterTipo.value = '';
     filterQuartos.value = '';
     filterPreco.value = '';
+    window.history.replaceState({}, '', window.location.pathname);
     applyFilters();
   });
+
+  const params = new URLSearchParams(window.location.search);
+  const initialTipo = params.get('tipo');
+  const initialQuartos = params.get('quartos');
+  const initialPreco = params.get('preco');
+  if (initialTipo) filterTipo.value = initialTipo.charAt(0).toUpperCase() + initialTipo.slice(1);
+  if (initialQuartos) filterQuartos.value = initialQuartos;
+  if (initialPreco) filterPreco.value = initialPreco;
+  applyFilters();
 </script>
 
 <style>

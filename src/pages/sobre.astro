@@ -48,7 +48,7 @@ const team = [
       <h1 class="text-[clamp(32px,5vw,52px)] font-extrabold text-white tracking-tight leading-tight mb-6" style="font-family: 'Playfair Display', serif;">
         Valor que <em style="font-style: italic; color: #C9A84C;">Permanece</em>
       </h1>
-      <p class="text-[15px] text-white/55 leading-[1.8] max-w-[560px] mx-auto">
+      <p class="text-[15px] text-white/50 leading-[1.8] max-w-[560px] mx-auto">
         Desde 2012, a MGV Imóveis conecta famílias aos melhores imóveis do litoral paulista com atendimento consultivo, ético e personalizado.
       </p>
     </div>
@@ -61,10 +61,10 @@ const team = [
       <div>
         <div class="text-[9.5px] font-bold tracking-[0.24em] uppercase text-gold mb-3 flex items-center gap-2 before:content-[''] before:w-6 before:h-px before:bg-gold before:opacity-60">Quem somos</div>
         <h2 class="text-[26px] font-extrabold text-navy tracking-tight mb-5 leading-tight">Especialistas no mercado litorâneo</h2>
-        <p class="text-[14px] text-navy/65 leading-[1.8] mb-4">
+        <p class="text-[14px] text-navy/50 leading-[1.8] mb-4">
           A MGV Imóveis nasceu do amor pelo litoral paulista e da vontade de transformar a experiência de comprar ou vender um imóvel. Acreditamos que cada negociação é única e merece atenção, cuidado e transparência.
         </p>
-        <p class="text-[14px] text-navy/65 leading-[1.8]">
+        <p class="text-[14px] text-navy/50 leading-[1.8]">
           Atuamos com imóveis de médio e alto padrão em Guarujá, Riviera de São Lourenço e Santos, oferecendo um portfólio criteriosamente selecionado e um atendimento que vai muito além de uma simples transação.
         </p>
       </div>
@@ -75,9 +75,9 @@ const team = [
 
         <div class="grid grid-cols-2 gap-4">
           {siteConfig.stats.map((stat) => (
-            <div class="p-5 rounded-[12px] border border-navy/7 bg-offwhite">
+            <div class="p-5 rounded-[12px] border border-navy/10 bg-offwhite">
               <div class="text-[32px] font-extrabold text-navy leading-none tracking-tight mb-1">{stat.value}</div>
-              <div class="text-[11px] text-navy/45 uppercase tracking-wider">{stat.label}</div>
+              <div class="text-[11px] text-navy/50 uppercase tracking-wider">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -98,10 +98,10 @@ const team = [
           { icon: '⭐', title: 'Excelência', desc: 'Imóveis criteriosamente selecionados e atendimento de alto nível que reflete o valor que entregamos.' },
           { icon: '🏖️', title: 'Conhecimento local', desc: 'Mais de uma década no litoral paulista nos dá uma visão única do mercado e das oportunidades.' },
         ].map((v) => (
-          <div class="p-6 bg-white rounded-[14px] border border-navy/7 shadow-[0_4px_20px_rgba(11,29,51,0.08)] text-center">
+          <div class="p-6 bg-white rounded-[14px] border border-navy/10 shadow-[0_4px_20px_rgba(11,29,51,0.08)] text-center">
             <div class="text-[36px] mb-4">{v.icon}</div>
             <h3 class="text-[14px] font-bold text-navy mb-2">{v.title}</h3>
-            <p class="text-[12.5px] text-navy/55 leading-[1.7]">{v.desc}</p>
+            <p class="text-[12.5px] text-navy/50 leading-[1.7]">{v.desc}</p>
           </div>
         ))}
       </div>
@@ -118,10 +118,10 @@ const team = [
 
       <div class="grid grid-cols-3 gap-6">
         {team.map((member) => (
-          <div class="bg-white rounded-[14px] border border-navy/8 shadow-[0_4px_20px_rgba(11,29,51,0.08)] overflow-hidden">
+          <div class="bg-white rounded-[14px] border border-navy/10 shadow-[0_4px_20px_rgba(11,29,51,0.08)] overflow-hidden">
             <!-- Avatar placeholder -->
             <div class="h-[180px] flex items-center justify-center" style="background: linear-gradient(145deg, #0B1D33, #0F2442);">
-              <div class="w-20 h-20 rounded-full bg-gold/20 border-2 border-gold/40 flex items-center justify-center text-[32px] font-extrabold text-gold">
+              <div class="w-20 h-20 rounded-full bg-gold/20 border-2 border-gold/50 flex items-center justify-center text-[32px] font-extrabold text-gold">
                 {member.initial}
               </div>
             </div>
@@ -129,16 +129,16 @@ const team = [
             <div class="p-5">
               <h3 class="text-[14px] font-bold text-navy mb-1">{member.name}</h3>
               <div class="text-[11px] text-gold font-semibold tracking-[0.04em] mb-3">{member.role}</div>
-              <p class="text-[12px] text-navy/55 leading-[1.65] mb-4">{member.bio}</p>
+              <p class="text-[12px] text-navy/50 leading-[1.65] mb-4">{member.bio}</p>
 
               <div class="flex gap-3 mb-4">
-                <div class="flex-1 text-center py-2 bg-navy/4 rounded-[8px]">
+                <div class="flex-1 text-center py-2 bg-navy/5 rounded-[8px]">
                   <div class="text-[15px] font-extrabold text-navy">{member.imoveis}</div>
-                  <div class="text-[9px] text-navy/40 uppercase tracking-wider">Imóveis</div>
+                  <div class="text-[9px] text-navy/50 uppercase tracking-wider">Imóveis</div>
                 </div>
-                <div class="flex-1 text-center py-2 bg-navy/4 rounded-[8px]">
+                <div class="flex-1 text-center py-2 bg-navy/5 rounded-[8px]">
                   <div class="text-[15px] font-extrabold text-navy">{member.anos}</div>
-                  <div class="text-[9px] text-navy/40 uppercase tracking-wider">Anos</div>
+                  <div class="text-[9px] text-navy/50 uppercase tracking-wider">Anos</div>
                 </div>
               </div>
 
@@ -167,7 +167,7 @@ const team = [
         <a href="/imoveis" class="flex items-center gap-2 px-8 py-3 bg-gold text-navy font-bold text-[12px] tracking-[0.07em] rounded-[9px] no-underline transition-colors hover:bg-gold-dark" style="color: #0B1D33;">
           Ver imóveis
         </a>
-        <a href="/contato" class="flex items-center gap-2 px-8 py-3 bg-transparent text-white font-bold text-[12px] tracking-[0.07em] rounded-[9px] no-underline border border-white/25 transition-colors hover:bg-white/10">
+        <a href="/contato" class="flex items-center gap-2 px-8 py-3 bg-transparent text-white font-bold text-[12px] tracking-[0.07em] rounded-[9px] no-underline border border-white/20 transition-colors hover:bg-white/10">
           Fale conosco
         </a>
       </div>

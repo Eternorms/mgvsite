@@ -7,33 +7,21 @@ interface Props {
 }
 
 const { property, class: className = '' } = Astro.props;
-const { slug, title, location, city, price, type, badge, badgeType, beds, baths, area, gradient } = property;
+const { slug, title, location, city, price, type, badge, badgeType, beds, baths, area, image } = property;
 
 const badgeClasses: Record<string, string> = {
   gold: 'bg-gold text-navy',
-  navy: 'bg-navy/85 text-white border border-gold/30',
-  excl: 'bg-gold/14 text-gold border border-gold/35 backdrop-blur-sm',
+  navy: 'bg-navy text-white border border-gold/50',
+  excl: 'bg-gold/10 text-gold border border-gold/50 backdrop-blur-sm',
 };
 ---
 
-<article class={`group bg-white rounded-2xl overflow-hidden border border-navy/7 shadow-[0_4px_20px_rgba(11,29,51,0.08)] cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg ${className}`}>
+<article class={`group bg-white rounded-2xl overflow-hidden border border-navy/10 shadow-[0_4px_20px_rgba(11,29,51,0.08)] cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg ${className}`}>
 
   <!-- Image area -->
   <div class="relative h-[220px] overflow-hidden">
-    <!-- Gradient placeholder (substituir por <img> quando tiver fotos reais) -->
-    <div
-      class="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-      style={`background: ${gradient};`}
-    ></div>
-
-    <!-- Watermark logo -->
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <svg width="72" height="78" viewBox="0 0 428 472" fill="none" opacity="0.07">
-        <path d="M214 216.383L301.654 156.047V216.383H323.191H339.348H357.75V194V171.5V134V102.21V86V78V73.5V69.5H333.5L263.737 116.5L214 151L91.5 69.5L66.75 69.6004V133.792V172.702V191.466V210.23V251.215V271.954V292.758L214.003 386L357.75 293V224H286.127H248.562H232.896H215.005H214.504V254V288L241.55 278H301.654L214.003 326L122.346 268.5V156.047L214 216.383Z" fill="white"/>
-        <path d="M426 249.5L366 288C366 288 366.5 61.4789 366.5 60H332.5L214 140.5L92 59.9997H58.7385V287L1 250.45V130.944V1H106.5L214 69.5L319.5 1H426V249.5Z" fill="white"/>
-        <path d="M425.501 327.972L213.75 470.5L1 327.5V262.5L214 400L426 262.5L425.501 327.972Z" fill="white"/>
-      </svg>
-    </div>
+    <img src={image} alt={title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]" loading="lazy" />
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/10 via-transparent to-navy/50"></div>
 
     <!-- Badge -->
     {badge && (
@@ -53,7 +41,7 @@ const badgeClasses: Record<string, string> = {
     </button>
 
     <!-- Price overlay -->
-    <div class="absolute bottom-[14px] left-[14px] z-10 bg-navy/75 backdrop-blur-md rounded-[7px] px-[13px] py-[6px] text-[15px] font-extrabold text-gold tracking-tight">
+    <div class="absolute bottom-[14px] left-[14px] z-10 bg-navy backdrop-blur-md rounded-[7px] px-[13px] py-[6px] text-[15px] font-extrabold text-gold tracking-tight">
       {price}
     </div>
   </div>
@@ -61,7 +49,7 @@ const badgeClasses: Record<string, string> = {
   <!-- Body -->
   <div class="px-[18px] pt-[18px]">
     <h3 class="text-[14px] font-bold text-navy leading-snug mb-[6px]">{title}</h3>
-    <div class="flex items-center gap-[5px] text-[11px] text-navy/42 mb-[14px]">
+    <div class="flex items-center gap-[5px] text-[11px] text-navy/50 mb-[14px]">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2C8.68 2 6 4.68 6 8c0 4.5 6 14 6 14s6-9.5 6-14c0-3.32-2.68-6-6-6z"/>
         <circle cx="12" cy="8" r="2"/>
@@ -71,9 +59,9 @@ const badgeClasses: Record<string, string> = {
   </div>
 
   <!-- Specs -->
-  <div class="flex border-t border-navy/6 mx-[18px] pt-[12px]">
+  <div class="flex border-t border-navy/5 mx-[18px] pt-[12px]">
     {beds > 0 && (
-      <div class="flex flex-1 items-center gap-[6px] text-[10.5px] font-semibold text-navy/50 relative">
+    <div class="flex flex-1 items-center gap-[6px] text-[10.5px] font-semibold text-navy/50 relative">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M2 4v16M2 8h18a2 2 0 012 2v10M2 16h20"/><path d="M6 8V4"/>
         </svg>
@@ -81,19 +69,23 @@ const badgeClasses: Record<string, string> = {
       </div>
     )}
     {baths > 0 && (
-      <div class="flex flex-1 items-center gap-[6px] text-[10.5px] font-semibold text-navy/50 relative before:absolute before:left-0 before:top-[10%] before:h-[80%] before:w-px before:bg-navy/8 pl-[14px]">
+      <div class="flex flex-1 items-center gap-[6px] text-[10.5px] font-semibold text-navy/50 relative before:absolute before:left-0 before:top-[10%] before:h-[80%] before:w-px before:bg-navy/10 pl-[14px]">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 6 A3 3 0 0 1 15 6 L15 11 L3 11 L3 13 A9 9 0 0 0 21 13 L21 11 L15 11"/>
         </svg>
         {baths} ban.
       </div>
     )}
-    <div class={`flex flex-1 items-center gap-[6px] text-[10.5px] font-semibold text-navy/50 relative before:absolute before:left-0 before:top-[10%] before:h-[80%] before:w-px before:bg-navy/8 ${beds > 0 || baths > 0 ? 'pl-[14px]' : ''}`}>
+    <div class={`flex flex-1 items-center gap-[6px] text-[10.5px] font-semibold text-navy/50 relative before:absolute before:left-0 before:top-[10%] before:h-[80%] before:w-px before:bg-navy/10 ${beds > 0 || baths > 0 ? 'pl-[14px]' : ''}`}>
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="3" width="18" height="18" rx="2"/>
       </svg>
       {area}m²
     </div>
+  </div>
+
+  <div class="px-[18px] pt-[10px]">
+    <span class="inline-flex rounded-[6px] bg-navy/5 px-2.5 py-1 text-[9.5px] font-bold uppercase tracking-[0.12em] text-navy/50">{type}</span>
   </div>
 
   <!-- Footer buttons -->
@@ -105,10 +97,10 @@ const badgeClasses: Record<string, string> = {
       Ver detalhes
     </a>
     <a
-      href={`https://wa.me/5513999999999?text=Tenho interesse no imóvel: ${title}`}
+      href={`https://wa.me/5013999999999?text=Tenho interesse no imóvel: ${title}`}
       target="_blank"
       rel="noopener"
-      class="flex flex-1 items-center justify-center gap-[6px] text-[11px] font-bold tracking-[0.07em] px-[16px] py-[10px] rounded-[8px] bg-transparent text-navy border border-navy/12 transition-all duration-200 hover:border-navy"
+      class="flex flex-1 items-center justify-center gap-[6px] text-[11px] font-bold tracking-[0.07em] px-[16px] py-[10px] rounded-[8px] bg-transparent text-navy border border-navy/10 transition-all duration-200 hover:border-navy"
     >
       WhatsApp
     </a>

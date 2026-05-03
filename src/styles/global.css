@@ -72,7 +72,7 @@
      INPUTS - MGV BrandGuide
      ======================================== */
   .input-label {
-    @apply block text-[9px] uppercase text-navy/40 mb-[6px];
+    @apply block text-[9px] uppercase text-navy/50 mb-[6px];
   }
 
   .input-field {
@@ -94,11 +94,11 @@
   }
 
   .badge-success {
-    @apply badge bg-success/10 text-[#1a8a42] border border-success/25;
+    @apply badge bg-success/10 text-[#1a8a42] border border-success/20;
   }
 
   .badge-alert {
-    @apply badge bg-alert/10 text-[#8a6010] border border-alert/25;
+    @apply badge bg-alert/10 text-[#8a6010] border border-alert/20;
   }
 
   .badge-error {
@@ -136,7 +136,7 @@
 
   /* Aspect ratios */
   .aspect-property {
-    aspect-ratio: 4/3;
+    aspect-ratio: 4/5;
   }
 
   .aspect-property-wide {

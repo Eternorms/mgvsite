@@ -23,13 +23,13 @@ const features = [
 ];
 ---
 
-<section id="features" class="bg-white border-t border-navy/6 border-b border-navy/6">
+<section id="features" class="bg-white border-t border-navy/5 border-b border-navy/5">
   <div class="flex items-start justify-center flex-wrap py-14 px-12 gap-0 max-w-[1200px] mx-auto">
     {features.map((feat, i) => (
-      <div class={`flex flex-col items-center text-center px-8 gap-[14px] flex-1 min-w-[200px] max-w-[280px] relative ${i > 0 ? 'before:content-[""] before:absolute before:left-0 before:top-[10%] before:h-[80%] before:w-px before:bg-navy/7' : ''}`}>
+      <div class={`flex flex-col items-center text-center px-8 gap-[14px] flex-1 min-w-[200px] max-w-[280px] relative ${i > 0 ? 'before:content-[""] before:absolute before:left-0 before:top-[10%] before:h-[80%] before:w-px before:bg-navy/10' : ''}`}>
         <div class="w-12 h-12 rounded-[12px] flex items-center justify-center border border-gold/20" style="background: linear-gradient(135deg, rgba(201,168,76,.1), rgba(201,168,76,.04));" set:html={feat.icon}></div>
         <div class="text-[13px] font-bold text-navy">{feat.title}</div>
-        <div class="text-[11.5px] text-navy/48 leading-[1.7]">{feat.desc}</div>
+        <div class="text-[11.5px] text-navy/50 leading-[1.7]">{feat.desc}</div>
       </div>
     ))}
   </div>

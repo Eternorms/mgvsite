@@ -15,10 +15,9 @@
     "auto:start": "concurrently \"npm run dev\" \"npm run pencil:watch\" \"npm run auto:commit\" --names \"ASTRO,WATCH,COMMIT\" --prefix-colors \"cyan,yellow,green\""
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/tailwind": "^6.0.2",
-    "astro": "^4.16.19",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/react": "^5.0.4",
+    "astro": "^6.2.1",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -27,10 +26,15 @@
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
+    "autoprefixer": "^10.5.0",
     "chokidar": "^4.0.3",
     "concurrently": "^9.2.1",
     "dotenv": "^17.3.1",
+    "postcss": "^8.5.13",
     "prettier": "^3.8.1",
     "simple-git": "^3.33.0"
+  },
+  "overrides": {
+    "yaml": "^2.8.4"
   }
 }

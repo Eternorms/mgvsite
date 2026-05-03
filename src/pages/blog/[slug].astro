@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { blogPosts, getBlogPostBySlug } from '../../data/blogPosts';
+import { siteConfig } from '../../data/siteConfig';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const post = getBlogPostBySlug(Astro.params.slug);
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+const related = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+---
+
+<BaseLayout title={post.title} description={post.excerpt}>
+  <Header alwaysSolid />
+
+  <main>
+    <section class="relative pt-[120px] pb-[72px] px-12 overflow-hidden bg-navy">
+      <img src={post.image} alt="" class="absolute inset-0 h-full w-full object-cover opacity-20" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/75 to-navy"></div>
+      <div class="relative max-w-[900px] mx-auto">
+        <div class="flex items-center gap-2 text-[11px] text-white/50 mb-6">
+          <a href="/" class="text-white/50 no-underline hover:text-white">Home</a>
+          <span>/</span>
+          <a href="/blog" class="text-white/50 no-underline hover:text-white">Blog</a>
+          <span>/</span>
+          <span class="text-gold">{post.category}</span>
+        </div>
+        <div class="inline-flex text-[9px] font-bold tracking-[0.16em] uppercase px-3 py-1 rounded-[5px] bg-gold text-navy mb-5">
+          {post.category}
+        </div>
+        <h1 class="text-[clamp(30px,5vw,54px)] font-extrabold leading-tight tracking-tight text-white max-w-[780px] mb-5">
+          {post.title}
+        </h1>
+        <p class="text-[15px] md:text-[17px] text-white/50 leading-[1.75] max-w-[680px] mb-6">{post.excerpt}</p>
+        <div class="flex items-center gap-3 text-[12px] text-white/50">
+          <span>{post.date}</span>
+          <span>·</span>
+          <span>{post.readTime} leitura</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-12 py-[64px] bg-white">
+      <div class="max-w-[900px] mx-auto grid gap-12" style="grid-template-columns: minmax(0, 1fr) 260px;">
+        <article class="prose-copy">
+          {post.body.map((paragraph) => <p>{paragraph}</p>)}
+          <div class="mt-10 p-6 rounded-[12px] border border-gold/20 bg-gold/5">
+            <h2>Quer avaliar uma oportunidade?</h2>
+            <p>Converse com a equipe MGV para comparar imóveis, documentação e potencial de valorização antes de tomar a decisão.</p>
+            <a href={siteConfig.contact.whatsappHref} target="_blank" rel="noopener">Falar com consultor</a>
+          </div>
+        </article>
+
+        <aside class="self-start sticky top-[92px]">
+          <div class="rounded-[12px] border border-navy/10 bg-offwhite p-5">
+            <div class="text-[10px] font-bold tracking-[0.18em] uppercase text-gold mb-3">Atendimento MGV</div>
+            <p class="text-[12.5px] leading-[1.7] text-navy/50 mb-4">Compra, venda e avaliação de imóveis no litoral paulista com acompanhamento consultivo.</p>
+            <a href="/contato" class="flex items-center justify-center rounded-[8px] bg-navy px-4 py-3 text-[11px] font-bold tracking-[0.08em] text-gold no-underline">Entrar em contato</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="px-12 py-[56px] bg-offwhite">
+      <div class="max-w-[1000px] mx-auto">
+        <h2 class="text-[22px] font-extrabold text-navy mb-6">Leia também</h2>
+        <div class="grid grid-cols-3 gap-6">
+          {related.map((item) => (
+            <a href={`/blog/${item.slug}`} class="group overflow-hidden rounded-[12px] border border-navy/10 bg-white no-underline shadow-[0_4px_20px_rgba(11,29,51,0.07)]">
+              <img src={item.image} alt="" class="h-[150px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
+              <div class="p-5">
+                <div class="text-[10px] font-bold tracking-[0.14em] uppercase text-gold mb-2">{item.category}</div>
+                <h3 class="text-[14px] font-bold leading-snug text-navy">{item.title}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .prose-copy p {
+    color: rgba(11, 29, 51, 0.68);
+    font-size: 15px;
+    line-height: 1.9;
+    margin: 0 0 22px;
+  }
+  .prose-copy h2 {
+    color: #0B1D33;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 10px;
+  }
+  .prose-copy a {
+    display: inline-flex;
+    margin-top: 4px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #C9A84C;
+    color: #0B1D33;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+  @media (max-width: 900px) {
+    .px-12 { padding-left: 20px !important; padding-right: 20px !important; }
+    section .grid[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    aside { position: static !important; }
+    .grid-cols-3 { grid-template-columns: 1fr !important; }
+  }
+</style>

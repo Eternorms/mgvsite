@@ -5,6 +5,8 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "automation",
+    "dist",
+    "docs"
   ]
 }

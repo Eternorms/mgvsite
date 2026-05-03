@@ -33,7 +33,7 @@ const cols = [
   <div class="relative z-10 px-12 pt-[72px]" style="max-width: 1400px; margin: 0 auto;">
 
     <!-- Top grid -->
-    <div class="grid gap-[60px] pb-[56px] border-b border-white/6" style="grid-template-columns: 1.8fr 1fr 1fr 1.1fr;">
+    <div class="grid gap-[60px] pb-[56px] border-b border-white/5" style="grid-template-columns: 1.8fr 1fr 1fr 1.1fr;">
 
       <!-- Brand col -->
       <div class="flex flex-col gap-5">
@@ -49,23 +49,23 @@ const cols = [
           </div>
         </a>
 
-        <p class="text-[12px] text-white/36 leading-[1.75] max-w-[260px] font-light">
+        <p class="text-[12px] text-white/50 leading-[1.75] max-w-[260px] font-light">
           Especialistas em imóveis de médio e alto padrão no litoral paulista. Guarujá, Riviera de São Lourenço e Santos.
         </p>
 
         <!-- Socials -->
         <div class="flex gap-2">
-          <a href={siteConfig.social.instagram} target="_blank" rel="noopener" class="social-icon w-[38px] h-[38px] rounded-[9px] border border-white/10 bg-white/3 flex items-center justify-center transition-all duration-200 hover:border-gold/40 hover:bg-gold/8" aria-label="Instagram">
+          <a href={siteConfig.social.instagram} target="_blank" rel="noopener" class="social-icon w-[38px] h-[38px] rounded-[9px] border border-white/10 bg-white/5 flex items-center justify-center transition-all duration-200 hover:border-gold/50 hover:bg-gold/10" aria-label="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
             </svg>
           </a>
-          <a href={siteConfig.social.facebook} target="_blank" rel="noopener" class="social-icon w-[38px] h-[38px] rounded-[9px] border border-white/10 bg-white/3 flex items-center justify-center transition-all duration-200 hover:border-gold/40 hover:bg-gold/8" aria-label="Facebook">
+          <a href={siteConfig.social.facebook} target="_blank" rel="noopener" class="social-icon w-[38px] h-[38px] rounded-[9px] border border-white/10 bg-white/5 flex items-center justify-center transition-all duration-200 hover:border-gold/50 hover:bg-gold/10" aria-label="Facebook">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
             </svg>
           </a>
-          <a href={siteConfig.social.youtube} target="_blank" rel="noopener" class="social-icon w-[38px] h-[38px] rounded-[9px] border border-white/10 bg-white/3 flex items-center justify-center transition-all duration-200 hover:border-gold/40 hover:bg-gold/8" aria-label="YouTube">
+          <a href={siteConfig.social.youtube} target="_blank" rel="noopener" class="social-icon w-[38px] h-[38px] rounded-[9px] border border-white/10 bg-white/5 flex items-center justify-center transition-all duration-200 hover:border-gold/50 hover:bg-gold/10" aria-label="YouTube">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
               <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
@@ -80,7 +80,7 @@ const cols = [
           <div class="text-[9.5px] font-bold tracking-[0.2em] text-gold uppercase mb-[22px] opacity-85">{col.title}</div>
           <div class="flex flex-col gap-[13px]">
             {col.links.map(({ label, href }) => (
-              <a href={href} class="text-[12px] text-white/40 no-underline transition-colors duration-200 hover:text-white/80">{label}</a>
+              <a href={href} class="text-[12px] text-white/50 no-underline transition-colors duration-200 hover:text-white">{label}</a>
             ))}
           </div>
         </div>
@@ -95,8 +95,8 @@ const cols = [
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
             </svg>
             <div>
-              <strong class="block text-[11.5px] font-semibold text-white/65 mb-[1px]">Telefone / WhatsApp</strong>
-              <a href={siteConfig.contact.phoneHref} class="text-[11.5px] text-white/40 no-underline font-light transition-colors hover:text-white/80">{siteConfig.contact.phone}</a>
+              <strong class="block text-[11.5px] font-semibold text-white/50 mb-[1px]">Telefone / WhatsApp</strong>
+              <a href={siteConfig.contact.phoneHref} class="text-[11.5px] text-white/50 no-underline font-light transition-colors hover:text-white">{siteConfig.contact.phone}</a>
             </div>
           </div>
 
@@ -105,8 +105,8 @@ const cols = [
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
             </svg>
             <div>
-              <strong class="block text-[11.5px] font-semibold text-white/65 mb-[1px]">E-mail</strong>
-              <a href={`mailto:${siteConfig.contact.email}`} class="text-[11.5px] text-white/40 no-underline font-light transition-colors hover:text-white/80">{siteConfig.contact.email}</a>
+              <strong class="block text-[11.5px] font-semibold text-white/50 mb-[1px]">E-mail</strong>
+              <a href={`mailto:${siteConfig.contact.email}`} class="text-[11.5px] text-white/50 no-underline font-light transition-colors hover:text-white">{siteConfig.contact.email}</a>
             </div>
           </div>
 
@@ -115,8 +115,8 @@ const cols = [
               <path d="M12 2C8.68 2 6 4.68 6 8c0 4.5 6 14 6 14s6-9.5 6-14c0-3.32-2.68-6-6-6z"/><circle cx="12" cy="8" r="2"/>
             </svg>
             <div>
-              <strong class="block text-[11.5px] font-semibold text-white/65 mb-[1px]">{siteConfig.contact.creci}</strong>
-              <span class="text-[11.5px] text-white/40 font-light leading-snug">{siteConfig.contact.address}<br/>{siteConfig.contact.city}</span>
+              <strong class="block text-[11.5px] font-semibold text-white/50 mb-[1px]">{siteConfig.contact.creci}</strong>
+              <span class="text-[11.5px] text-white/50 font-light leading-snug">{siteConfig.contact.address}<br/>{siteConfig.contact.city}</span>
             </div>
           </div>
         </div>
@@ -124,10 +124,10 @@ const cols = [
     </div>
 
     <!-- CTA bar -->
-    <div class="flex items-center justify-between gap-6 my-[40px] px-[28px] py-[20px] rounded-[12px] border border-gold/15 flex-wrap" style="background: linear-gradient(90deg, rgba(201,168,76,.08), rgba(201,168,76,.04));">
+    <div class="flex items-center justify-between gap-6 my-[40px] px-[28px] py-[20px] rounded-[12px] border border-gold/20 flex-wrap" style="background: linear-gradient(90deg, rgba(201,168,76,.08), rgba(201,168,76,.04));">
       <div>
         <strong class="block text-[13px] font-bold text-white mb-[3px]">Tem um imóvel para vender ou alugar?</strong>
-        <span class="text-[11px] text-white/36 font-light">Fale com nossos consultores e avalie seu imóvel gratuitamente.</span>
+        <span class="text-[11px] text-white/50 font-light">Fale com nossos consultores e avalie seu imóvel gratuitamente.</span>
       </div>
       <a
         href="/contato"
@@ -143,12 +143,12 @@ const cols = [
 
     <!-- Bottom bar -->
     <div class="flex items-center justify-between py-6 gap-4 flex-wrap border-t border-white/5">
-      <p class="text-[10.5px] text-white/20 tracking-[0.04em]">
+      <p class="text-[10.5px] text-white/50 tracking-[0.04em]">
         &copy; {currentYear} MGV Imóveis — Todos os direitos reservados.
       </p>
       <div class="flex gap-6">
-        <a href="/privacidade" class="text-[10.5px] text-white/20 no-underline transition-colors hover:text-white/55">Política de Privacidade</a>
-        <a href="/termos" class="text-[10.5px] text-white/20 no-underline transition-colors hover:text-white/55">Termos de Uso</a>
+        <a href="/privacidade" class="text-[10.5px] text-white/50 no-underline transition-colors hover:text-white/50">Política de Privacidade</a>
+        <a href="/termos" class="text-[10.5px] text-white/50 no-underline transition-colors hover:text-white/50">Termos de Uso</a>
       </div>
     </div>
 
