@@ -33,7 +33,7 @@ import { siteConfig } from '../data/siteConfig';
       <!-- Left: form -->
       <div>
         <h2 class="text-[20px] font-bold text-navy mb-6">Envie uma mensagem</h2>
-        <form class="flex flex-col gap-4" id="contact-form">
+        <form class="flex flex-col gap-4" id="contact-form" data-whatsapp={siteConfig.contact.whatsappHref}>
           <div class="grid grid-cols-2 gap-4">
             <div class="flex flex-col gap-1.5">
               <label class="text-[10px] font-bold tracking-[0.14em] uppercase text-navy/50">Seu nome *</label>
@@ -104,14 +104,14 @@ import { siteConfig } from '../data/siteConfig';
             Enviar mensagem
           </button>
 
-          <p class="text-[11px] text-navy/50 text-center">Respondemos em até 2 horas em horário comercial (seg–sex 9h–18h)</p>
+          <p class="text-[11px] text-navy/50 text-center">Ao enviar, abrimos o WhatsApp com sua mensagem preenchida.</p>
         </form>
 
         <!-- Success message (hidden) -->
         <div id="success-msg" class="hidden mt-6 p-5 bg-green-50 border border-green-200 rounded-[12px] text-center">
           <div class="text-[24px] mb-2">✅</div>
-          <div class="text-[14px] font-bold text-green-800 mb-1">Mensagem enviada!</div>
-          <div class="text-[12px] text-green-700">Entraremos em contato em breve. Obrigado!</div>
+          <div class="text-[14px] font-bold text-green-800 mb-1">Mensagem preparada</div>
+          <div class="text-[12px] text-green-700">Confira e envie pelo WhatsApp para concluir o contato.</div>
         </div>
       </div>
 
@@ -212,6 +212,17 @@ import { siteConfig } from '../data/siteConfig';
 
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
+    const data = new FormData(form);
+    const lines = [
+      'Olá, MGV Imóveis. Quero atendimento pelo site.',
+      `Nome: ${data.get('nome') || ''}`,
+      `Telefone/WhatsApp: ${data.get('telefone') || ''}`,
+      `E-mail: ${data.get('email') || ''}`,
+      `Assunto: ${data.get('assunto') || 'Não informado'}`,
+      `Mensagem: ${data.get('mensagem') || 'Não informada'}`,
+    ];
+    const whatsappBase = form.dataset.whatsapp || '';
+    window.open(`${whatsappBase}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
     form.style.display = 'none';
     successMsg?.classList.remove('hidden');
   });

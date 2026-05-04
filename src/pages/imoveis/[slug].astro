@@ -184,18 +184,23 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
         <!-- Quick form -->
         <div class="bg-white rounded-[14px] border border-navy/10 shadow-[0_4px_20px_rgba(11,29,51,0.08)] p-6">
           <div class="text-[13px] font-bold text-navy mb-4">Agende uma visita</div>
-          <form class="flex flex-col gap-3">
+          <form class="property-contact-form flex flex-col gap-3" data-title={title} data-whatsapp={siteConfig.contact.whatsappHref}>
             <input
               type="text"
+              name="nome"
+              required
               placeholder="Seu nome"
               class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/50"
             />
             <input
               type="tel"
+              name="telefone"
+              required
               placeholder="Seu telefone / WhatsApp"
               class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/50"
             />
             <textarea
+              name="mensagem"
               placeholder="Mensagem (opcional)"
               rows={3}
               class="text-[12.5px] text-navy bg-gray-50 border border-navy/10 rounded-[8px] px-4 py-[10px] outline-none transition-colors focus:border-gold placeholder-navy/50 resize-none"
@@ -230,6 +235,24 @@ const related = properties.filter((p) => p.slug !== slug).slice(0, 3);
 
   <Footer />
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.property-contact-form').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const title = form.dataset.title || 'imóvel';
+      const lines = [
+        `Olá! Tenho interesse no imóvel: ${title}`,
+        `Nome: ${data.get('nome') || ''}`,
+        `Telefone/WhatsApp: ${data.get('telefone') || ''}`,
+        `Mensagem: ${data.get('mensagem') || 'Gostaria de agendar uma visita.'}`,
+      ];
+      const whatsappBase = form.dataset.whatsapp || '';
+      window.open(`${whatsappBase}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+    });
+  });
+</script>
 
 <style>
   @media (max-width: 900px) {
