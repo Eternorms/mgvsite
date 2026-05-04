@@ -84,9 +84,10 @@ import { properties } from '../../data/properties';
   <div class="py-[56px] px-12" style="background: #FAFAFA; min-height: 500px;">
     <div class="max-w-[1200px] mx-auto">
       <div id="properties-grid" class="grid grid-cols-3 gap-6">
-        {properties.map((property) => (
+        {properties.map((property, index) => (
           <PropertyCard
             property={property}
+            imageLoading={index < 3 ? 'eager' : 'lazy'}
             data-tipo={property.type}
             data-quartos={property.beds}
             data-preco={property.priceRaw}
@@ -169,7 +170,12 @@ import { properties } from '../../data/properties';
   const initialTipo = params.get('tipo');
   const initialQuartos = params.get('quartos');
   const initialPreco = params.get('preco');
-  if (initialTipo) filterTipo.value = initialTipo.charAt(0).toUpperCase() + initialTipo.slice(1);
+  if (initialTipo) {
+    const matchingOption = Array.from(filterTipo.options).find(
+      (option) => option.value.toLowerCase() === initialTipo.toLowerCase()
+    );
+    if (matchingOption) filterTipo.value = matchingOption.value;
+  }
   if (initialQuartos) filterQuartos.value = initialQuartos;
   if (initialPreco) filterPreco.value = initialPreco;
   applyFilters();

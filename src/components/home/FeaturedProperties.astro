@@ -16,8 +16,8 @@ const featured = getFeaturedProperties();
     />
 
     <div class="grid grid-cols-3 gap-6">
-      {featured.map((property) => (
-        <PropertyCard property={property} />
+      {featured.map((property, index) => (
+        <PropertyCard property={property} imageLoading={index < 3 ? 'eager' : 'lazy'} />
       ))}
     </div>
   </div>
